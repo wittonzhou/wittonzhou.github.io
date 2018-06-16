@@ -88,19 +88,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>##1.Traditional SVD：<br>如果想运用SVD分解的话，有一个前提是要求矩阵是稠密的，即矩阵里的元素要非空，否则就不能运用SVD分解。很显然我们的任务还不能用SVD，所以一般的做法是先用均值或者其他统计学方法来填充矩阵，然后再运用SVD分解降维。</p>
-<p>##2.FunkSVD：<br>不再将矩阵分解为3个矩阵，而是分解为2个低秩的用户项目矩阵。<br>公式：</p>
+        <h2 id="1-Traditional-SVD："><a href="#1-Traditional-SVD：" class="headerlink" title="1.Traditional SVD："></a>1.Traditional SVD：</h2><p>如果想运用SVD分解的话，有一个前提是要求矩阵是稠密的，即矩阵里的元素要非空，否则就不能运用SVD分解。很显然我们的任务还不能用SVD，所以一般的做法是先用均值或者其他统计学方法来填充矩阵，然后再运用SVD分解降维。</p>
+<h2 id="2-FunkSVD："><a href="#2-FunkSVD：" class="headerlink" title="2.FunkSVD："></a>2.FunkSVD：</h2><p>不再将矩阵分解为3个矩阵，而是分解为2个低秩的用户项目矩阵。<br>公式：</p>
 <p><img src="/var/folders/pw/1y4dk4b90rld4w9g8y0jvl200000gn/T/com.evernote.Evernote/WebKitDnD.fg2wfG/D233112D-1C9B-40DB-82DD-7FAA2779C63A.png" alt="avatar"></p>
 <p>带有L2正则项的FunkSVD，公式为：<br><img src="/var/folders/pw/1y4dk4b90rld4w9g8y0jvl200000gn/T/com.evernote.Evernote/WebKitDnD.4X1JYE/893F76E0-AE2F-407D-8E72-381E655E3187.png" alt="avatar"></p>
-<p>##3.BiasSVD：<br>在FunkSVD提出来之后，出现了很多变形版本，其中一个相对成功的方法是BiasSVD，顾名思义，即带有偏置项的SVD分解，公式：</p>
+<h2 id="3-BiasSVD："><a href="#3-BiasSVD：" class="headerlink" title="3.BiasSVD："></a>3.BiasSVD：</h2><p>在FunkSVD提出来之后，出现了很多变形版本，其中一个相对成功的方法是BiasSVD，顾名思义，即带有偏置项的SVD分解，公式：</p>
 <p><img src="/var/folders/pw/1y4dk4b90rld4w9g8y0jvl200000gn/T/com.evernote.Evernote/WebKitDnD.EZW7RA/8B0C889E-DA35-43B6-BB4A-83730E4CA7E8.png" alt="avatar"></p>
-<p>##4.SVD++：<br>人们后来又提出了改进的BiasSVD，还是顾名思义，两个加号，我想是一个加了用户项目偏置项，另一个是在它的基础上添加了用户的隐式反馈信息。公式：</p>
+<h2 id="4-SVD-："><a href="#4-SVD-：" class="headerlink" title="4.SVD++："></a>4.SVD++：</h2><p>人们后来又提出了改进的BiasSVD，还是顾名思义，两个加号，我想是一个加了用户项目偏置项，另一个是在它的基础上添加了用户的隐式反馈信息。公式：</p>
 <p><img src="/var/folders/pw/1y4dk4b90rld4w9g8y0jvl200000gn/T/com.evernote.Evernote/WebKitDnD.WWH8d5/290F2773-D58A-47E7-9DA5-014128997AB7.png" alt="avatar"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/常见的SVD/" data-id="cjih1uzs30000ze0ku48yys2t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/常见的SVD/" data-id="cjih1ycer0000010kvxdfnyo2" class="article-share-link">Share</a>
       
       
     </footer>

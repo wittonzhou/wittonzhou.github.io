@@ -5,15 +5,19 @@
   
 
   
-  <title>WittonZhou</title>
+  <title>读论文(1) | WittonZhou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="WittonZhou">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="#2017-Deep Learning based Recommender System:A Survey and New Perspectives RS作为一种克服信息过载的有效解决方案。与传统推荐模型相比，深度学习提供了对用户需求，项目特征和它们之间历史交互的理解。 文章全面回顾了基于DL的RS研究方法，提出了基于DL的推荐模型的分类法。 DL能够有效地捕获非线性和非平凡的用户-项目关系。 R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读论文(1)">
+<meta property="og:url" content="http://yoursite.com/读论文-1/index.html">
 <meta property="og:site_name" content="WittonZhou">
+<meta property="og:description" content="#2017-Deep Learning based Recommender System:A Survey and New Perspectives RS作为一种克服信息过载的有效解决方案。与传统推荐模型相比，深度学习提供了对用户需求，项目特征和它们之间历史交互的理解。 文章全面回顾了基于DL的RS研究方法，提出了基于DL的推荐模型的分类法。 DL能够有效地捕获非线性和非平凡的用户-项目关系。 R">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-04T09:29:08.510Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WittonZhou">
+<meta name="twitter:title" content="读论文(1)">
+<meta name="twitter:description" content="#2017-Deep Learning based Recommender System:A Survey and New Perspectives RS作为一种克服信息过载的有效解决方案。与传统推荐模型相比，深度学习提供了对用户需求，项目特征和它们之间历史交互的理解。 文章全面回顾了基于DL的RS研究方法，提出了基于DL的推荐模型的分类法。 DL能够有效地捕获非线性和非平凡的用户-项目关系。 R">
   
     <link rel="alternate" href="/atom.xml" title="WittonZhou" type="application/atom+xml">
   
@@ -64,9 +68,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-读论文-1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-读论文-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/读论文-1/" class="article-date">
   <time datetime="2018-08-04T09:27:42.000Z" itemprop="datePublished">2018-08-04</time>
@@ -79,8 +81,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/读论文-1/">读论文(1)</a>
+    <h1 class="article-title" itemprop="name">
+      读论文(1)
     </h1>
   
 
@@ -109,55 +111,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-常见的SVD" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/常见的SVD/" class="article-date">
-  <time datetime="2018-06-16T06:55:18.000Z" itemprop="datePublished">2018-06-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/常见的SVD/">常见的SVD</a>
-    </h1>
+    <a href="/常见的SVD/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">常见的SVD</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Traditional-SVD："><a href="#1-Traditional-SVD：" class="headerlink" title="1.Traditional SVD："></a>1.Traditional SVD：</h2><p>如果想运用SVD分解的话，有一个前提是要求矩阵是稠密的，即矩阵里的元素要非空，否则就不能运用SVD分解。很显然我们的任务还不能用SVD，所以一般的做法是先用均值或者其他统计学方法来填充矩阵，然后再运用SVD分解降维。</p>
-<h2 id="2-FunkSVD："><a href="#2-FunkSVD：" class="headerlink" title="2.FunkSVD："></a>2.FunkSVD：</h2><p>不再将矩阵分解为3个矩阵，而是分解为2个低秩的用户项目矩阵。<br>公式：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsd1l25eggj304601emwy.jpg" alt=""></p>
-<p>带有L2正则项的FunkSVD，公式为：<br><img src="https://ws1.sinaimg.cn/large/006tKfTcly1fsd1nbcmjij30bb01xjrd.jpg" alt=""></p>
-<h2 id="3-BiasSVD："><a href="#3-BiasSVD：" class="headerlink" title="3.BiasSVD："></a>3.BiasSVD：</h2><p>在FunkSVD提出来之后，出现了很多变形版本，其中一个相对成功的方法是BiasSVD，顾名思义，即带有偏置项的SVD分解，公式：</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tKfTcly1fsd1r1it7kj30eg01hglj.jpg" alt=""></p>
-<h2 id="4-SVD-："><a href="#4-SVD-：" class="headerlink" title="4.SVD++："></a>4.SVD++：</h2><p>人们后来又提出了改进的BiasSVD，还是顾名思义，两个加号，我想是一个加了用户项目偏置项，另一个是在它的基础上添加了用户的隐式反馈信息。公式：</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fsd1qnhm8hj30cl02rmx7.jpg" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/常见的SVD/" data-id="cjkf7uuth00001l0khwuabkzc" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         

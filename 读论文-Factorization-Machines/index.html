@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>读论文: Factorization Machines | WittonZhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="##《Factorization Machines》,2010 模型： 推导： 可知FM参数训练的复杂度为O(kn) ##FM的优点：1.FM允许在SVM失败的非常稀疏的数据下进行参数估计2.FM具有线性复杂度，可以在原始中进行优化，而不依赖于支持向量，如SVM。3.FM是一种可以与任何实值特征向量一起使用的通用预测器。与此相反，其他最先进的分解模型仅适用于非常有限的输入数据。 ##FM与SVM比">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读论文: Factorization Machines">
+<meta property="og:url" content="http://yoursite.com/读论文-Factorization-Machines/index.html">
+<meta property="og:site_name" content="WittonZhou">
+<meta property="og:description" content="##《Factorization Machines》,2010 模型： 推导： 可知FM参数训练的复杂度为O(kn) ##FM的优点：1.FM允许在SVM失败的非常稀疏的数据下进行参数估计2.FM具有线性复杂度，可以在原始中进行优化，而不依赖于支持向量，如SVM。3.FM是一种可以与任何实值特征向量一起使用的通用预测器。与此相反，其他最先进的分解模型仅适用于非常有限的输入数据。 ##FM与SVM比">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fvku7ctissj30r60jatbg.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwgy1fvku82r8tjj30qk0jm76d.jpg">
+<meta property="og:updated_time" content="2018-09-24T11:08:30.942Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读论文: Factorization Machines">
+<meta name="twitter:description" content="##《Factorization Machines》,2010 模型： 推导： 可知FM参数训练的复杂度为O(kn) ##FM的优点：1.FM允许在SVM失败的非常稀疏的数据下进行参数估计2.FM具有线性复杂度，可以在原始中进行优化，而不依赖于支持向量，如SVM。3.FM是一种可以与任何实值特征向量一起使用的通用预测器。与此相反，其他最先进的分解模型仅适用于非常有限的输入数据。 ##FM与SVM比">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwgy1fvku7ctissj30r60jatbg.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="WittonZhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">WittonZhou</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">个人博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-读论文-Factorization-Machines" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/读论文-Factorization-Machines/" class="article-date">
+  <time datetime="2018-09-24T11:04:35.000Z" itemprop="datePublished">2018-09-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      读论文: Factorization Machines
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##《Factorization Machines》,2010</p>
+<p>模型：</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fvku7ctissj30r60jatbg.jpg" alt=""></h1><p>推导：</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fvku82r8tjj30qk0jm76d.jpg" alt=""></h1><p>可知FM参数训练的复杂度为O(kn)</p>
+<p>##FM的优点：<br>1.FM允许在SVM失败的非常稀疏的数据下进行参数估计<br>2.FM具有线性复杂度，可以在原始中进行优化，而不依赖于支持向量，如SVM。<br>3.FM是一种可以与任何实值特征向量一起使用的通用预测器。与此相反，其他最先进的分解模型仅适用于非常有限的输入数据。</p>
+<p>##FM与SVM比较：<br>1.SVM的密集参数化需要直接观察相互作用，这个在稀疏设置中通常不会给出。即使在稀疏的情况在，也可以很好的估计FM的参数。<br>2.FM可以在原始中直接学习。非线性SVM通常在双重中学习。<br>3.FMs的模型方程独立于训练数据。使用SVM进行预测取决于训练数据的部分（支持向量）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/读论文-Factorization-Machines/" data-id="cjmg6w6zo0002t20kqfgydins" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/读论文-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">读论文(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/读论文-Factorization-Machines/">读论文: Factorization Machines</a>
+          </li>
+        
+          <li>
+            <a href="/读论文-1/">读论文(1)</a>
+          </li>
+        
+          <li>
+            <a href="/常见的SVD/">常见的SVD</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Witton Zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

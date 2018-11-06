@@ -5,19 +5,19 @@
   
 
   
-  <title>读论文:FFM | WittonZhou</title>
+  <title>读论文:OSIBD | WittonZhou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="《Field-aware Factorization Machines for CTR Prediction》,2016摘要1.在CTR预估上FFM性能超过了FM">
+  <meta name="description" content="《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR大数据中的类别不平衡问题降低了现有的分类器的效果，本文提出了一种新奇的算法，叫Over Sampling on Imbalance Big Data(OSIBD)。结果是，OSIBD算法在处理不平衡类别的问">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读论文:FFM">
-<meta property="og:url" content="http://yoursite.com/读论文-FFM/index.html">
+<meta property="og:title" content="读论文:OSIBD">
+<meta property="og:url" content="http://yoursite.com/读论文-OSIBD/index.html">
 <meta property="og:site_name" content="WittonZhou">
-<meta property="og:description" content="《Field-aware Factorization Machines for CTR Prediction》,2016摘要1.在CTR预估上FFM性能超过了FM">
+<meta property="og:description" content="《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR大数据中的类别不平衡问题降低了现有的分类器的效果，本文提出了一种新奇的算法，叫Over Sampling on Imbalance Big Data(OSIBD)。结果是，OSIBD算法在处理不平衡类别的问">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T14:42:55.839Z">
+<meta property="og:updated_time" content="2018-11-06T02:32:54.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="读论文:FFM">
-<meta name="twitter:description" content="《Field-aware Factorization Machines for CTR Prediction》,2016摘要1.在CTR预估上FFM性能超过了FM">
+<meta name="twitter:title" content="读论文:OSIBD">
+<meta name="twitter:description" content="《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR大数据中的类别不平衡问题降低了现有的分类器的效果，本文提出了一种新奇的算法，叫Over Sampling on Imbalance Big Data(OSIBD)。结果是，OSIBD算法在处理不平衡类别的问">
   
     <link rel="alternate" href="/atom.xml" title="WittonZhou" type="application/atom+xml">
   
@@ -68,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-读论文-FFM" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-读论文-OSIBD" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/读论文-FFM/" class="article-date">
-  <time datetime="2018-10-18T14:18:45.000Z" itemprop="datePublished">2018-10-18</time>
+    <a href="/读论文-OSIBD/" class="article-date">
+  <time datetime="2018-11-04T07:21:06.000Z" itemprop="datePublished">2018-11-04</time>
 </a>
     
   </div>
@@ -82,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      读论文:FFM
+      读论文:OSIBD
     </h1>
   
 
@@ -90,12 +90,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="《Field-aware-Factorization-Machines-for-CTR-Prediction》-2016"><a href="#《Field-aware-Factorization-Machines-for-CTR-Prediction》-2016" class="headerlink" title="《Field-aware Factorization Machines for CTR Prediction》,2016"></a>《Field-aware Factorization Machines for CTR Prediction》,2016</h2><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>1.在CTR预估上FFM性能超过了FM</p>
+        <h2 id="《A-Novel-Technique-on-Class-Imbalance-Big-Data-using-Analogous-over-Sampling-Approach》-2017-IJCIR"><a href="#《A-Novel-Technique-on-Class-Imbalance-Big-Data-using-Analogous-over-Sampling-Approach》-2017-IJCIR" class="headerlink" title="《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR"></a>《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR</h2><p>大数据中的类别不平衡问题降低了现有的分类器的效果，本文提出了一种新奇的算法，叫Over Sampling on Imbalance Big Data(OSIBD)。结果是，OSIBD算法在处理不平衡类别的问题上效果要比C4.5算法好。</p>
+<p>类别不平衡问题影响分类器效果的原因是：只有少数的minority 实例是模型构造过程中可以获取的，所以模型是很难预测unseen minority 实例。</p>
+<h3 id="处理类别不平衡的方法有"><a href="#处理类别不平衡的方法有" class="headerlink" title="处理类别不平衡的方法有"></a>处理类别不平衡的方法有</h3><p>1.作用于算法的内部方法<br>调整决策threshold，对少数类产生bias，在学习过程中引入costs来补偿少数群体。</p>
+<p>2.作用于数据的外部方法<br>对少数类的过采样和对多数类的欠采样。</p>
+<p>3.基于boosting的针对训练集不平衡的综合方法</p>
+<h3 id="OSIBD算法"><a href="#OSIBD算法" class="headerlink" title="OSIBD算法"></a>OSIBD算法</h3><p>(1)Preparation of the Majority and Minority subsets<br>准备多数类和少数类的子集</p>
+<p>(2)Improve with in class imbalances by removing noisy and borderline<br>instances<br>通过去除噪声和边界实例来改善类别不平衡</p>
+<p>为了找到弱实例，其中一种方法是找到最有影响属性或特征，然后移除与该特征相关的噪声或弱属性的范围。</p>
+<p>(3)Applying oversampling on the minority subset<br>对少数类进行过采样</p>
+<p>通过生成合成实例，副本实例和生成具有现有和合成实例的特征的混合实例，以类似方法对预处理的少数子集进行过采样。</p>
+<p>(4)Forming the strong dataset<br>形成足够的数据集</p>
+<h3 id="个人心得"><a href="#个人心得" class="headerlink" title="个人心得"></a>个人心得</h3><p>文章中提到的过采样算法比较模糊，没有类似SMOTE的具体的过采样算法。<br>OSIBD的实验对比是和C4.5来进行的，而且是单颗树的。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/读论文-FFM/" data-id="cjo54e5oa000393s67hg2boyk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/读论文-OSIBD/" data-id="cjo54e5o8000293s6jg3pnqoh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -104,19 +115,10 @@
     
 <nav id="article-nav">
   
-    <a href="/读论文-OSIBD/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          读论文:OSIBD
-        
-      </div>
-    </a>
   
-  
-    <a href="/读论文-Deep-Learning-based-Recommender-System-A-Survey-and-New/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/读论文-FFM/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">读论文: Deep Learning based Recommender System:A Survey and New</div>
+      <div class="article-nav-title">读论文:FFM</div>
     </a>
   
 </nav>

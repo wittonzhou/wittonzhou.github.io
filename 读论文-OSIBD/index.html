@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>读论文:OSIBD | WittonZhou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR大数据中的类别不平衡问题降低了现有的分类器的效果，本文提出了一种新奇的算法，叫Over Sampling on Imbalance Big Data(OSIBD)。结果是，OSIBD算法在处理不平衡类别的问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读论文:OSIBD">
+<meta property="og:url" content="http://yoursite.com/读论文-OSIBD/index.html">
+<meta property="og:site_name" content="WittonZhou">
+<meta property="og:description" content="《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR大数据中的类别不平衡问题降低了现有的分类器的效果，本文提出了一种新奇的算法，叫Over Sampling on Imbalance Big Data(OSIBD)。结果是，OSIBD算法在处理不平衡类别的问">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-06T02:32:54.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读论文:OSIBD">
+<meta name="twitter:description" content="《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR大数据中的类别不平衡问题降低了现有的分类器的效果，本文提出了一种新奇的算法，叫Over Sampling on Imbalance Big Data(OSIBD)。结果是，OSIBD算法在处理不平衡类别的问">
+  
+    <link rel="alternate" href="/atom.xml" title="WittonZhou" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">WittonZhou</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">个人博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-读论文-OSIBD" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/读论文-OSIBD/" class="article-date">
+  <time datetime="2018-11-04T07:21:06.000Z" itemprop="datePublished">2018-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      读论文:OSIBD
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="《A-Novel-Technique-on-Class-Imbalance-Big-Data-using-Analogous-over-Sampling-Approach》-2017-IJCIR"><a href="#《A-Novel-Technique-on-Class-Imbalance-Big-Data-using-Analogous-over-Sampling-Approach》-2017-IJCIR" class="headerlink" title="《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR"></a>《A Novel Technique on Class Imbalance Big Data using Analogous over Sampling Approach》,2017,IJCIR</h2><p>大数据中的类别不平衡问题降低了现有的分类器的效果，本文提出了一种新奇的算法，叫Over Sampling on Imbalance Big Data(OSIBD)。结果是，OSIBD算法在处理不平衡类别的问题上效果要比C4.5算法好。</p>
+<p>类别不平衡问题影响分类器效果的原因是：只有少数的minority 实例是模型构造过程中可以获取的，所以模型是很难预测unseen minority 实例。</p>
+<h3 id="处理类别不平衡的方法有"><a href="#处理类别不平衡的方法有" class="headerlink" title="处理类别不平衡的方法有"></a>处理类别不平衡的方法有</h3><p>1.作用于算法的内部方法<br>调整决策threshold，对少数类产生bias，在学习过程中引入costs来补偿少数群体。</p>
+<p>2.作用于数据的外部方法<br>对少数类的过采样和对多数类的欠采样。</p>
+<p>3.基于boosting的针对训练集不平衡的综合方法</p>
+<h3 id="OSIBD算法"><a href="#OSIBD算法" class="headerlink" title="OSIBD算法"></a>OSIBD算法</h3><p>(1)Preparation of the Majority and Minority subsets<br>准备多数类和少数类的子集</p>
+<p>(2)Improve with in class imbalances by removing noisy and borderline<br>instances<br>通过去除噪声和边界实例来改善类别不平衡</p>
+<p>为了找到弱实例，其中一种方法是找到最有影响属性或特征，然后移除与该特征相关的噪声或弱属性的范围。</p>
+<p>(3)Applying oversampling on the minority subset<br>对少数类进行过采样</p>
+<p>通过生成合成实例，副本实例和生成具有现有和合成实例的特征的混合实例，以类似方法对预处理的少数子集进行过采样。</p>
+<p>(4)Forming the strong dataset<br>形成足够的数据集</p>
+<h3 id="个人心得"><a href="#个人心得" class="headerlink" title="个人心得"></a>个人心得</h3><p>文章中提到的过采样算法比较模糊，没有类似SMOTE的具体的过采样算法。<br>OSIBD的实验对比是和C4.5来进行的，而且是单颗树的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/读论文-OSIBD/" data-id="cjo58sbje0002zps6c3djmypo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/读论文-FFM/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">读论文:FFM</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/读论文-OSIBD/">读论文:OSIBD</a>
+          </li>
+        
+          <li>
+            <a href="/读论文-FFM/">读论文:FFM</a>
+          </li>
+        
+          <li>
+            <a href="/读论文-Deep-Learning-based-Recommender-System-A-Survey-and-New/">读论文: Deep Learning based Recommender System:A Survey and New</a>
+          </li>
+        
+          <li>
+            <a href="/读论文-Factorization-Machines/">读论文: Factorization Machines</a>
+          </li>
+        
+          <li>
+            <a href="/常见的SVD/">常见的SVD</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Witton Zhou<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

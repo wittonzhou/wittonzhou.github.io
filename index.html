@@ -321,7 +321,9 @@
 </ol>
 <p>注：ganma是GBDT中每颗决策树拟合叶子节点最好的输出值，在回归GBDT初始化的时候，ganma一般取值为所有y的平均值。  </p>
 <p>当我们迭代到第t个弱分类器的时候，我们把损失函数进行一阶泰勒展开，出现的f_t-1（x）+ △x 的形式，这个△x 就是我们这一轮弱分类器想要输出的值，一阶泰勒展开后面有一项是导数和△x的乘积。我们当然想让这一轮的损失函数小于上一轮的，那我们就让△x等于负导数 ，这样一个值的平方加上负号，一定是一个负值，这样就能保证这一轮的损失函数小于上一轮的。</p>
-<h3 id="4-重要参数的意义和设置"><a href="#4-重要参数的意义和设置" class="headerlink" title="4.重要参数的意义和设置"></a>4.重要参数的意义和设置</h3><p>推荐GBDT树的深度：6（横向比较：DecisionTree/RandomForest需要把树的深度调到15或更高）<br>以下摘自知乎上的一个问答（详见参考文献8），问题和回复都很好的阐述了这个参数设置的数学原理。<br>【问】xgboost/gbdt在调参时为什么树的深度很少就能达到很高的精度？  </p>
+<p>GBDT回归算法：</p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9299dbwyj30hu0gtwgd.jpg" alt=""></h1><p>GBDT二分类算法：</p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx92ahgwioj30ft0a8wft.jpg" alt=""></h1><h3 id="4-重要参数的意义和设置"><a href="#4-重要参数的意义和设置" class="headerlink" title="4.重要参数的意义和设置"></a>4.重要参数的意义和设置</h3><p>推荐GBDT树的深度：6（横向比较：DecisionTree/RandomForest需要把树的深度调到15或更高）<br>以下摘自知乎上的一个问答（详见参考文献8），问题和回复都很好的阐述了这个参数设置的数学原理。<br>【问】xgboost/gbdt在调参时为什么树的深度很少就能达到很高的精度？  </p>
 <p>用xgboost/gbdt在在调参的时候把树的最大深度调成6就有很高的精度了。但是用DecisionTree/RandomForest的时候需要把树的深度调到15或更高。用RandomForest所需要的树的深度和DecisionTree一样我能理解，因为它是用bagging的方法把DecisionTree组合在一起，相当于做了多次DecisionTree一样。但是xgboost/gbdt仅仅用梯度上升法就能用6个节点的深度达到很高的预测精度，使我惊讶到怀疑它是黑科技了。请问下xgboost/gbdt是怎么做到的？它的节点和一般的DecisionTree不同吗？  </p>
 <p>【答】<br>  这是一个非常好的问题，题主对各算法的学习非常细致透彻，问的问题也关系到这两个算法的本质。这个问题其实并不是一个很简单的问题，我尝试用我浅薄的机器学习知识对这个问题进行回答。  </p>
 <p>一句话的解释，来自周志华老师的机器学习教科书（机器学习-周志华）：Boosting主要关注降低偏差，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成；Bagging主要关注降低方差，因此它在不剪枝的决策树、神经网络等学习器上效用更为明显。</p>
@@ -331,14 +333,14 @@
 <p>如下图所示，当模型越复杂时，拟合的程度就越高，模型的训练偏差就越小。但此时如果换一组数据可能模型的变化就会很大，即模型的方差很大。所以模型过于复杂的时候会导致过拟合。  </p>
 <p>当模型越简单时，即使我们再换一组数据，最后得出的学习器和之前的学习器的差别就不那么大，模型的方差很小。还是因为模型简单，所以偏差会很大。  </p>
 <p>模型复杂度与偏差方差的关系图：  </p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx8xddvtfxj30cn07tgmc.jpg" alt=""></h1><p>也就是说，当我们训练一个模型时，偏差和方差都得照顾到，漏掉一个都不行。  </p>
+<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx8xddvtfxj30cn07tgmc.jpg" alt=""></h1><p>也就是说，当我们训练一个模型时，偏差和方差都得照顾到，漏掉一个都不行。  </p>
 <p>对于Bagging算法来说，由于我们会并行地训练很多不同的分类器的目的就是降低这个方差(variance) ,因为采用了相互独立的基分类器多了以后，h的值自然就会靠近.所以对于每个基分类器来说，目标就是如何降低这个偏差（bias),所以我们会采用深度很深甚至不剪枝的决策树。  </p>
 <p>对于Boosting来说，每一步我们都会在上一轮的基础上更加拟合原数据，所以可以保证偏差（bias）,所以对于每个基分类器来说，问题就在于如何选择variance更小的分类器，即更简单的分类器，所以我们选择了深度很浅的决策树。</p>
 <h3 id="5-Shrinkage"><a href="#5-Shrinkage" class="headerlink" title="5.Shrinkage"></a>5.Shrinkage</h3><p>Shrinkage（缩减）的思想认为，每次走一小步逐渐逼近结果的效果，要比每次迈一大步很快逼近结果的方式更容易避免过拟合。即它不完全信任每一个棵残差树，它认为每棵树只学到了真理的一小部分，累加的时候只累加一小部分，通过多学几棵树弥补不足。  </p>
 <p>没用Shrinkage时：（yi表示第i棵树上y的预测值， y(1~i)表示前i棵树y的综合预测值）<br>y(i+1) = 残差(y1~yi)， 其中： 残差(y1~yi) =  y真实值 - y(1 ~ i)<br>y(1 ~ i) = SUM(y1, …, yi)  </p>
 <p>Shrinkage不改变第一个方程，只把第二个方程改为：<br>y(1 ~ i) = y(1 ~ i-1) + step * yi</p>
 <p>即Shrinkage仍然以残差作为学习目标，但对于残差学习出来的结果，只累加一小部分（step*残差）逐步逼近目标，step一般都比较小，如0.01~0.001（注意该step非gradient的step），导致各个树的残差是渐变的而不是陡变的。直觉上这也很好理解，不像直接用残差一步修复误差，而是只修复一点点，其实就是把大步切成了很多小步。本质上，Shrinkage为每棵树设置了一个weight，累加时要乘以这个weight，但和Gradient并没有关系。</p>
-<p>参考链接：<a href="https://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="noopener">https://www.jianshu.com/p/005a4e6ac775</a></p>
+<p>参考链接：<br><a href="https://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="noopener">https://www.jianshu.com/p/005a4e6ac775</a><br><a href="https://www.cnblogs.com/pinard/p/6140514.html" target="_blank" rel="noopener">https://www.cnblogs.com/pinard/p/6140514.html</a></p>
 
           
         

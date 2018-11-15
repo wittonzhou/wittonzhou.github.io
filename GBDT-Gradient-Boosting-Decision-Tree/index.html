@@ -83,22 +83,22 @@
 
 
 
-<meta name="description" content="GBDT优点：效果好；既可以用于分类也可以用于回归；可以筛选特征。   GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBDT的适用面非常广。亦可用于二分类问题（设定阈值，大于阈值为正例，反之为负例）。GBDT无论用于分类">
+<meta name="description" content="GBDT优点：效果好；既可以用于分类也可以用于回归；可以筛选特征；可以灵活处理各种类型的数据，包括连续值和离散值。缺点：由于弱学习器之间存在依赖关系，难以并行训练数据。 GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GBDT(Gradient Boosting Decision Tree)">
 <meta property="og:url" content="http://yoursite.com/GBDT-Gradient-Boosting-Decision-Tree/index.html">
 <meta property="og:site_name" content="WittonZhou">
-<meta property="og:description" content="GBDT优点：效果好；既可以用于分类也可以用于回归；可以筛选特征。   GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBDT的适用面非常广。亦可用于二分类问题（设定阈值，大于阈值为正例，反之为负例）。GBDT无论用于分类">
+<meta property="og:description" content="GBDT优点：效果好；既可以用于分类也可以用于回归；可以筛选特征；可以灵活处理各种类型的数据，包括连续值和离散值。缺点：由于弱学习器之间存在依赖关系，难以并行训练数据。 GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBD">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx8x32ajhyj311n0u0tr2.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx8x4wjl52j30zo0u0h51.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx8x63w79lj30bu08b3zc.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fx8x7m8fguj30i90eimyz.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fx8xddvtfxj30cn07tgmc.jpg">
-<meta property="og:updated_time" content="2018-11-15T10:32:16.241Z">
+<meta property="og:updated_time" content="2018-11-15T12:54:52.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GBDT(Gradient Boosting Decision Tree)">
-<meta name="twitter:description" content="GBDT优点：效果好；既可以用于分类也可以用于回归；可以筛选特征。   GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBDT的适用面非常广。亦可用于二分类问题（设定阈值，大于阈值为正例，反之为负例）。GBDT无论用于分类">
+<meta name="twitter:description" content="GBDT优点：效果好；既可以用于分类也可以用于回归；可以筛选特征；可以灵活处理各种类型的数据，包括连续值和离散值。缺点：由于弱学习器之间存在依赖关系，难以并行训练数据。 GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBD">
 <meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx8x32ajhyj311n0u0tr2.jpg">
 
 
@@ -309,20 +309,23 @@
       
 
       
-        <h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p>优点：效果好；既可以用于分类也可以用于回归；可以筛选特征。  </p>
-<p>GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBDT的适用面非常广。亦可用于二分类问题（设定阈值，大于阈值为正例，反之为负例）。GBDT无论用于分类还是回归一直都是使用的CART回归树。  </p>
+        <h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p>优点：效果好；既可以用于分类也可以用于回归；可以筛选特征；可以灵活处理各种类型的数据，包括连续值和离散值。<br>缺点：由于弱学习器之间存在依赖关系，难以并行训练数据。</p>
+<p>GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBDT的适用面非常广。亦可用于二分类问题（设定阈值，大于阈值为正例，反之为负例）。GBDT无论用于分类还是回归一直都是使用的CART回归树。<br>在GBDT的迭代中，假设我们前一轮迭代得到的强学习器是ft−1(x), 损失函数是L(y,ft−1(x)), 我们本轮迭代的目标是找到一个CART回归树模型的弱学习器ht(x)，让本轮的损失函数L(y,ft(x)=L(y,ft−1(x)+ht(x))最小。也就是说，本轮迭代找到决策树，要让样本的损失尽量变得更小。  </p>
 <h3 id="1-Regression-Decision-Tree：回归树"><a href="#1-Regression-Decision-Tree：回归树" class="headerlink" title="1.Regression Decision Tree：回归树"></a>1.Regression Decision Tree：回归树</h3><p>回归树总体流程类似于分类树，区别在于，回归树的每一个节点都会得一个预测值，以年龄为例，该预测值等于属于这个节点的所有人年龄的平均值。分枝时穷举每一个feature的每个阈值找最好的分割点，但衡量最好的标准不再是最大熵，而是最小化平方误差（最小化均方差）。也就是被预测出错的人数越多，错的越离谱，平方误差就越大，通过最小化平方误差能够找到最可靠的分枝依据。分枝直到每个叶子节点上人的年龄都唯一或者达到预设的终止条件(如叶子个数上限)，若最终叶子节点上人的年龄不唯一，则以该节点上所有人的平均年龄做为该叶子节点的预测年龄。  </p>
 <p>回归树算法如下图（截图来自《统计学习方法》5.5.1 CART生成）： </p>
 <h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx8x32ajhyj311n0u0tr2.jpg" alt=""></h1><h3 id="2-Boosting-Decision-Tree：提升树算法"><a href="#2-Boosting-Decision-Tree：提升树算法" class="headerlink" title="2.Boosting Decision Tree：提升树算法"></a>2.Boosting Decision Tree：提升树算法</h3><p>提升树是迭代多棵回归树来共同决策。当采用平方误差损失函数时，每一棵回归树学习的是之前所有树的结论和残差，拟合得到一个当前的残差回归树，残差的意义如公式：残差 = 真实值 - 预测值 。提升树即是整个迭代过程生成的回归树的累加。  </p>
 <p>示例如下：</p>
 <h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx8x4wjl52j30zo0u0h51.jpg" alt=""></h1><p>提升树算法：  </p>
 <h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx8x63w79lj30bu08b3zc.jpg" alt=""></h1><h3 id="3-GBDT：梯度提升决策树"><a href="#3-GBDT：梯度提升决策树" class="headerlink" title="3.GBDT：梯度提升决策树"></a>3.GBDT：梯度提升决策树</h3><p>利用最速下降的近似方法，即利用损失函数的负梯度在当前模型的值，作为回归问题中提升树算法的残差的近似值，拟合一个回归树。<br>算法如下：  </p>
-<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx8x7m8fguj30i90eimyz.jpg" alt=""></h1><p>算法步骤解释：  </p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx8x7m8fguj30i90eimyz.jpg" alt=""></h1><p>I(x∈Rjm)其实就是一个很简单的函数，如果x∈Rtj，那么I(x∈Rjm)=1，否则等于0。</p>
+<p>算法步骤解释：  </p>
 <ol>
 <li>初始化弱学习器f0，估计使损失函数极小化的常数值，它是只有一个根节点的树，即ganma是一个常数值。  </li>
 <li>对迭代轮数m=1~M有<br>（a）计算损失函数的负梯度在当前模型的值，将它作为残差的估计<br>（b）估计回归树叶节点区域，以拟合残差的近似值<br>（c）利用线性搜索估计叶节点区域的值，使损失函数极小化<br>（d）更新回归树（更新强学习器）  </li>
 <li>得到输出的最终模型 f(x)（得到强学习器f（x）的表达式）  </li>
 </ol>
+<p>注：ganma是GBDT中每颗决策树拟合叶子节点最好的输出值，在回归GBDT初始化的时候，ganma一般取值为所有y的平均值。  </p>
+<p>当我们迭代到第t个弱分类器的时候，我们把损失函数进行一阶泰勒展开，出现的f_t-1（x）+ △x 的形式，这个△x 就是我们这一轮弱分类器想要输出的值，一阶泰勒展开后面有一项是导数和△x的乘积。我们当然想让这一轮的损失函数小于上一轮的，那我们就让△x等于负导数 ，这样一个值的平方加上负号，一定是一个负值，这样就能保证这一轮的损失函数小于上一轮的。</p>
 <h3 id="4-重要参数的意义和设置"><a href="#4-重要参数的意义和设置" class="headerlink" title="4.重要参数的意义和设置"></a>4.重要参数的意义和设置</h3><p>推荐GBDT树的深度：6（横向比较：DecisionTree/RandomForest需要把树的深度调到15或更高）<br>以下摘自知乎上的一个问答（详见参考文献8），问题和回复都很好的阐述了这个参数设置的数学原理。<br>【问】xgboost/gbdt在调参时为什么树的深度很少就能达到很高的精度？  </p>
 <p>用xgboost/gbdt在在调参的时候把树的最大深度调成6就有很高的精度了。但是用DecisionTree/RandomForest的时候需要把树的深度调到15或更高。用RandomForest所需要的树的深度和DecisionTree一样我能理解，因为它是用bagging的方法把DecisionTree组合在一起，相当于做了多次DecisionTree一样。但是xgboost/gbdt仅仅用梯度上升法就能用6个节点的深度达到很高的预测精度，使我惊讶到怀疑它是黑科技了。请问下xgboost/gbdt是怎么做到的？它的节点和一般的DecisionTree不同吗？  </p>
 <p>【答】<br>  这是一个非常好的问题，题主对各算法的学习非常细致透彻，问的问题也关系到这两个算法的本质。这个问题其实并不是一个很简单的问题，我尝试用我浅薄的机器学习知识对这个问题进行回答。  </p>
@@ -340,6 +343,7 @@
 <p>没用Shrinkage时：（yi表示第i棵树上y的预测值， y(1~i)表示前i棵树y的综合预测值）<br>y(i+1) = 残差(y1~yi)， 其中： 残差(y1~yi) =  y真实值 - y(1 ~ i)<br>y(1 ~ i) = SUM(y1, …, yi)  </p>
 <p>Shrinkage不改变第一个方程，只把第二个方程改为：<br>y(1 ~ i) = y(1 ~ i-1) + step * yi</p>
 <p>即Shrinkage仍然以残差作为学习目标，但对于残差学习出来的结果，只累加一小部分（step*残差）逐步逼近目标，step一般都比较小，如0.01~0.001（注意该step非gradient的step），导致各个树的残差是渐变的而不是陡变的。直觉上这也很好理解，不像直接用残差一步修复误差，而是只修复一点点，其实就是把大步切成了很多小步。本质上，Shrinkage为每棵树设置了一个weight，累加时要乘以这个weight，但和Gradient并没有关系。</p>
+<p>参考链接：<a href="https://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="noopener">https://www.jianshu.com/p/005a4e6ac775</a></p>
 
       
     </div>

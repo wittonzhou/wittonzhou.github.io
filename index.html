@@ -233,6 +233,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/GBDT-Gradient-Boosting-Decision-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Witton Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WittonZhou">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/GBDT-Gradient-Boosting-Decision-Tree/" itemprop="url">GBDT(Gradient Boosting Decision Tree)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-15T18:16:02+08:00">
+                2018-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p>优点：效果好；既可以用于分类也可以用于回归；可以筛选特征。  </p>
+<p>GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBDT的适用面非常广。亦可用于二分类问题（设定阈值，大于阈值为正例，反之为负例）。GBDT无论用于分类还是回归一直都是使用的CART回归树。  </p>
+<h3 id="1-Regression-Decision-Tree：回归树"><a href="#1-Regression-Decision-Tree：回归树" class="headerlink" title="1.Regression Decision Tree：回归树"></a>1.Regression Decision Tree：回归树</h3><p>回归树总体流程类似于分类树，区别在于，回归树的每一个节点都会得一个预测值，以年龄为例，该预测值等于属于这个节点的所有人年龄的平均值。分枝时穷举每一个feature的每个阈值找最好的分割点，但衡量最好的标准不再是最大熵，而是最小化平方误差（最小化均方差）。也就是被预测出错的人数越多，错的越离谱，平方误差就越大，通过最小化平方误差能够找到最可靠的分枝依据。分枝直到每个叶子节点上人的年龄都唯一或者达到预设的终止条件(如叶子个数上限)，若最终叶子节点上人的年龄不唯一，则以该节点上所有人的平均年龄做为该叶子节点的预测年龄。  </p>
+<p>回归树算法如下图（截图来自《统计学习方法》5.5.1 CART生成）： </p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx8x32ajhyj311n0u0tr2.jpg" alt=""></h1><h3 id="2-Boosting-Decision-Tree：提升树算法"><a href="#2-Boosting-Decision-Tree：提升树算法" class="headerlink" title="2.Boosting Decision Tree：提升树算法"></a>2.Boosting Decision Tree：提升树算法</h3><p>提升树是迭代多棵回归树来共同决策。当采用平方误差损失函数时，每一棵回归树学习的是之前所有树的结论和残差，拟合得到一个当前的残差回归树，残差的意义如公式：残差 = 真实值 - 预测值 。提升树即是整个迭代过程生成的回归树的累加。  </p>
+<p>示例如下：</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx8x4wjl52j30zo0u0h51.jpg" alt=""></h1><p>提升树算法：  </p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx8x63w79lj30bu08b3zc.jpg" alt=""></h1><h3 id="3-GBDT：梯度提升决策树"><a href="#3-GBDT：梯度提升决策树" class="headerlink" title="3.GBDT：梯度提升决策树"></a>3.GBDT：梯度提升决策树</h3><p>利用最速下降的近似方法，即利用损失函数的负梯度在当前模型的值，作为回归问题中提升树算法的残差的近似值，拟合一个回归树。<br>算法如下：  </p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx8x7m8fguj30i90eimyz.jpg" alt=""></h1><p>算法步骤解释：  </p>
+<ol>
+<li>初始化弱学习器f0，估计使损失函数极小化的常数值，它是只有一个根节点的树，即ganma是一个常数值。  </li>
+<li>对迭代轮数m=1~M有<br>（a）计算损失函数的负梯度在当前模型的值，将它作为残差的估计<br>（b）估计回归树叶节点区域，以拟合残差的近似值<br>（c）利用线性搜索估计叶节点区域的值，使损失函数极小化<br>（d）更新回归树（更新强学习器）  </li>
+<li>得到输出的最终模型 f(x)（得到强学习器f（x）的表达式）  </li>
+</ol>
+<h3 id="4-重要参数的意义和设置"><a href="#4-重要参数的意义和设置" class="headerlink" title="4.重要参数的意义和设置"></a>4.重要参数的意义和设置</h3><p>推荐GBDT树的深度：6（横向比较：DecisionTree/RandomForest需要把树的深度调到15或更高）<br>以下摘自知乎上的一个问答（详见参考文献8），问题和回复都很好的阐述了这个参数设置的数学原理。<br>【问】xgboost/gbdt在调参时为什么树的深度很少就能达到很高的精度？  </p>
+<p>用xgboost/gbdt在在调参的时候把树的最大深度调成6就有很高的精度了。但是用DecisionTree/RandomForest的时候需要把树的深度调到15或更高。用RandomForest所需要的树的深度和DecisionTree一样我能理解，因为它是用bagging的方法把DecisionTree组合在一起，相当于做了多次DecisionTree一样。但是xgboost/gbdt仅仅用梯度上升法就能用6个节点的深度达到很高的预测精度，使我惊讶到怀疑它是黑科技了。请问下xgboost/gbdt是怎么做到的？它的节点和一般的DecisionTree不同吗？  </p>
+<p>【答】<br>  这是一个非常好的问题，题主对各算法的学习非常细致透彻，问的问题也关系到这两个算法的本质。这个问题其实并不是一个很简单的问题，我尝试用我浅薄的机器学习知识对这个问题进行回答。  </p>
+<p>一句话的解释，来自周志华老师的机器学习教科书（机器学习-周志华）：Boosting主要关注降低偏差，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成；Bagging主要关注降低方差，因此它在不剪枝的决策树、神经网络等学习器上效用更为明显。</p>
+<p>随机森林(random forest)和GBDT都是属于集成学习（ensemble learning)的范畴。集成学习下有两个重要的策略Bagging和Boosting。  </p>
+<p>Bagging算法是这样做的：每个分类器都随机从原样本中做有放回的采样，然后分别在这些采样后的样本上训练分类器，然后再把这些分类器组合起来。简单的多数投票一般就可以。其代表算法是随机森林。Boosting的意思是这样，他通过迭代地训练一系列的分类器，每个分类器采用的样本分布都和上一轮的学习结果有关。其代表算法是AdaBoost, GBDT。  </p>
+<p>其实就机器学习算法来说，其泛化误差可以分解为两部分，偏差（bias)和方差(variance)。这个可由下图的式子导出（这里用到了概率论公式D(X)=E(X2)-[E(X)]2）。偏差指的是算法的期望预测与真实预测之间的偏差程度，反应了模型本身的拟合能力；方差度量了同等大小的训练集的变动导致学习性能的变化，刻画了数据扰动所导致的影响。这个有点儿绕，不过你一定知道过拟合。  </p>
+<p>如下图所示，当模型越复杂时，拟合的程度就越高，模型的训练偏差就越小。但此时如果换一组数据可能模型的变化就会很大，即模型的方差很大。所以模型过于复杂的时候会导致过拟合。  </p>
+<p>当模型越简单时，即使我们再换一组数据，最后得出的学习器和之前的学习器的差别就不那么大，模型的方差很小。还是因为模型简单，所以偏差会很大。  </p>
+<p>模型复杂度与偏差方差的关系图：  </p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx8xddvtfxj30cn07tgmc.jpg" alt=""></h1><p>也就是说，当我们训练一个模型时，偏差和方差都得照顾到，漏掉一个都不行。  </p>
+<p>对于Bagging算法来说，由于我们会并行地训练很多不同的分类器的目的就是降低这个方差(variance) ,因为采用了相互独立的基分类器多了以后，h的值自然就会靠近.所以对于每个基分类器来说，目标就是如何降低这个偏差（bias),所以我们会采用深度很深甚至不剪枝的决策树。  </p>
+<p>对于Boosting来说，每一步我们都会在上一轮的基础上更加拟合原数据，所以可以保证偏差（bias）,所以对于每个基分类器来说，问题就在于如何选择variance更小的分类器，即更简单的分类器，所以我们选择了深度很浅的决策树。</p>
+<h3 id="5-Shrinkage"><a href="#5-Shrinkage" class="headerlink" title="5.Shrinkage"></a>5.Shrinkage</h3><p>Shrinkage（缩减）的思想认为，每次走一小步逐渐逼近结果的效果，要比每次迈一大步很快逼近结果的方式更容易避免过拟合。即它不完全信任每一个棵残差树，它认为每棵树只学到了真理的一小部分，累加的时候只累加一小部分，通过多学几棵树弥补不足。  </p>
+<p>没用Shrinkage时：（yi表示第i棵树上y的预测值， y(1~i)表示前i棵树y的综合预测值）<br>y(i+1) = 残差(y1~yi)， 其中： 残差(y1~yi) =  y真实值 - y(1 ~ i)<br>y(1 ~ i) = SUM(y1, …, yi)  </p>
+<p>Shrinkage不改变第一个方程，只把第二个方程改为：<br>y(1 ~ i) = y(1 ~ i-1) + step * yi</p>
+<p>即Shrinkage仍然以残差作为学习目标，但对于残差学习出来的结果，只累加一小部分（step*残差）逐步逼近目标，step一般都比较小，如0.01~0.001（注意该step非gradient的step），导致各个树的残差是渐变的而不是陡变的。直觉上这也很好理解，不像直接用残差一步修复误差，而是只修复一点点，其实就是把大步切成了很多小步。本质上，Shrinkage为每棵树设置了一个weight，累加时要乘以这个weight，但和Gradient并没有关系。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/读《解析卷积神经网络》/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1241,7 +1391,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

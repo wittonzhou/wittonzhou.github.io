@@ -340,6 +340,7 @@
 <p>没用Shrinkage时：（yi表示第i棵树上y的预测值， y(1~i)表示前i棵树y的综合预测值）<br>y(i+1) = 残差(y1~yi)， 其中： 残差(y1~yi) =  y真实值 - y(1 ~ i)<br>y(1 ~ i) = SUM(y1, …, yi)  </p>
 <p>Shrinkage不改变第一个方程，只把第二个方程改为：<br>y(1 ~ i) = y(1 ~ i-1) + step * yi</p>
 <p>即Shrinkage仍然以残差作为学习目标，但对于残差学习出来的结果，只累加一小部分（step*残差）逐步逼近目标，step一般都比较小，如0.01~0.001（注意该step非gradient的step），导致各个树的残差是渐变的而不是陡变的。直觉上这也很好理解，不像直接用残差一步修复误差，而是只修复一点点，其实就是把大步切成了很多小步。本质上，Shrinkage为每棵树设置了一个weight，累加时要乘以这个weight，但和Gradient并没有关系。</p>
+<h3 id="6-总结"><a href="#6-总结" class="headerlink" title="6.总结"></a>6.总结</h3><p>GBDT主要是通过损失函数的负梯度来拟合本轮损失的近似值（也就是本轮残差的近似值），进而拟合一个CART回归树。根据第t棵回归树，得到对应的叶节点区域。然后根据叶子区域，计算得到最佳拟合值，然后根据更新公式来更新学习器。</p>
 <p>参考链接：<br><a href="https://www.jianshu.com/p/005a4e6ac775" target="_blank" rel="noopener">https://www.jianshu.com/p/005a4e6ac775</a><br><a href="https://www.cnblogs.com/pinard/p/6140514.html" target="_blank" rel="noopener">https://www.cnblogs.com/pinard/p/6140514.html</a></p>
 
           

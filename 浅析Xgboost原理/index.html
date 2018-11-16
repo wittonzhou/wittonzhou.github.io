@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="f95QClvWkWuCmeDiyOR8qqZeVKyONBqEfTEnHD_rpa4" />
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="1l6QQqPWSs" />
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wittonzhou-medium.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wittonzhou-small.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="浅析Xgboost原理内容 泰勒公式 最优化方法 从参数空间到函数空间 详解Xgboost LightGBM   泰勒公式： 梯度下降法： 牛顿法： 从参数空间到函数空间GBDT在函数空间中利用梯度下降法进行优化Xgboost在函数空间中用牛顿法进行优化   Xgboost的正则项：   误差函数的二阶泰勒展开：   Xgboost的打分函数：   树节点分裂算法–精确算法，遍历所有特征的所有可能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析Xgboost原理">
+<meta property="og:url" content="http://yoursite.com/浅析Xgboost原理/index.html">
+<meta property="og:site_name" content="WittonZhou">
+<meta property="og:description" content="浅析Xgboost原理内容 泰勒公式 最优化方法 从参数空间到函数空间 详解Xgboost LightGBM   泰勒公式： 梯度下降法： 牛顿法： 从参数空间到函数空间GBDT在函数空间中利用梯度下降法进行优化Xgboost在函数空间中用牛顿法进行优化   Xgboost的正则项：   误差函数的二阶泰勒展开：   Xgboost的打分函数：   树节点分裂算法–精确算法，遍历所有特征的所有可能">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9ptfs9ucj30um0n0aed.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xboi1ysj30sp0lcwio.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xeiixnhj30sg0l8n0g.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xjetx2jj30sn0lgjuw.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx9yv4msvjj30s90lk78t.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yzlike8j30t10lqad5.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx9z08gz61j30sy0lfgo4.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yxgpquwj30sw0l3n0m.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx9xqat898j30su0ldgst.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xssxkooj30sl0lan4w.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx9y1tzmfoj30sr0kv0z5.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx9ylg5zfxj30sn0j2jwd.jpg">
+<meta property="og:updated_time" content="2018-11-16T08:12:56.844Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅析Xgboost原理">
+<meta name="twitter:description" content="浅析Xgboost原理内容 泰勒公式 最优化方法 从参数空间到函数空间 详解Xgboost LightGBM   泰勒公式： 梯度下降法： 牛顿法： 从参数空间到函数空间GBDT在函数空间中利用梯度下降法进行优化Xgboost在函数空间中用牛顿法进行优化   Xgboost的正则项：   误差函数的二阶泰勒展开：   Xgboost的打分函数：   树节点分裂算法–精确算法，遍历所有特征的所有可能">
+<meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9ptfs9ucj30um0n0aed.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/浅析Xgboost原理/"/>
+
+
+
+
+
+  <title>浅析Xgboost原理 | WittonZhou</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WittonZhou</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">业精于勤荒于嬉，行成于思毁于随</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/浅析Xgboost原理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Witton Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WittonZhou">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浅析Xgboost原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-15T22:31:16+08:00">
+                2018-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="浅析Xgboost原理"><a href="#浅析Xgboost原理" class="headerlink" title="浅析Xgboost原理"></a>浅析Xgboost原理</h2><h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ol>
+<li>泰勒公式</li>
+<li>最优化方法</li>
+<li>从参数空间到函数空间</li>
+<li>详解Xgboost</li>
+<li>LightGBM</li>
+</ol>
+<hr>
+<p>泰勒公式：</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9ptfs9ucj30um0n0aed.jpg" alt=""></h1><p>梯度下降法：</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xboi1ysj30sp0lcwio.jpg" alt=""></h1><p>牛顿法：</p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xeiixnhj30sg0l8n0g.jpg" alt=""></h1><h3 id="从参数空间到函数空间"><a href="#从参数空间到函数空间" class="headerlink" title="从参数空间到函数空间"></a>从参数空间到函数空间</h3><p>GBDT在函数空间中利用梯度下降法进行优化<br>Xgboost在函数空间中用牛顿法进行优化  </p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xjetx2jj30sn0lgjuw.jpg" alt=""></h1><p>Xgboost的正则项：  </p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9yv4msvjj30s90lk78t.jpg" alt=""></h1><p>误差函数的二阶泰勒展开：  </p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yzlike8j30t10lqad5.jpg" alt=""></h1><h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9z08gz61j30sy0lfgo4.jpg" alt=""></h1><p>Xgboost的打分函数：  </p>
+<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yxgpquwj30sw0l3n0m.jpg" alt=""></h1><p>树节点分裂算法–精确算法，遍历所有特征的所有可能的分割点，计算gain值，选取值最大的（feature，value）去分割</p>
+<h1 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9xqat898j30su0ldgst.jpg" alt=""></h1><p>树节点分裂方法–近似算法，对于每个特征，只考察分位点，减少计算复杂度</p>
+<h1 id="-9"><a href="#-9" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xssxkooj30sl0lan4w.jpg" alt=""></h1><p>树节点分裂方法–近似算法举例：三分位数  </p>
+<p>实际上Xgboost不是简单地按照样本个数进行分为，而是以二阶导数值作为权重。</p>
+<h3 id="Xgboost的其他特性"><a href="#Xgboost的其他特性" class="headerlink" title="Xgboost的其他特性"></a>Xgboost的其他特性</h3><ol>
+<li>行抽样（row sample）</li>
+<li>列抽样（column sample），借鉴了随机森林</li>
+<li>Shrikage（缩减），即学习速率。将学习速率调小，迭代次数增多，有正则化作用</li>
+<li>支持自定义损失函数（需二阶可导）</li>
+</ol>
+<p>Column Block 和 Cache Aware Access：  </p>
+<h1 id="-10"><a href="#-10" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9y1tzmfoj30sr0kv0z5.jpg" alt=""></h1><h3 id="LightGBM的改进"><a href="#LightGBM的改进" class="headerlink" title="LightGBM的改进"></a>LightGBM的改进</h3><ol>
+<li><p>直方图算法：<br>把连续的浮点特征值离散化成k个整数，同时构造一个宽度为k的直方图。在遍历数据的时候，根据离散化后的值作为索引在直方图中累积统计量，当遍历一次数据后，直方图累积了需要的统计量，然后根据直方图的离散值，遍历寻找最优的分割点。  </p>
+<p> 这样减少了内存占用；也减少了split finding时计算增益的计算量。</p>
+</li>
+<li><p>直方图差加速<br> 一个叶子的直方图可以由它的父亲节点的直方图与它兄弟节点的 直方图做差得到，提升一倍速度。</p>
+</li>
+<li><p>建树过程的两种方法<br> Level-wise tree growth：同一层所有节点都做分裂，最后剪枝。代表有Xgboost<br> Leaf-wise tree growth：选取具有最大增益节点分裂，容易过拟合，可以通过max_depth限制。代表有LightGBM</p>
+</li>
+<li><p>并行优化<br> LightGBM的特征并行：<br> 每个worker保存所有数据集<br>（1）每个worker在其特征子集上寻找最佳切分点<br>（2）worker之间互相通信，找到全局最佳切分点<br>（3）每个worker根据全局最佳切分点进行节点分裂  </p>
+<p> 优点：避免广播instance indices，减小网络通信量<br> 缺点：split finding计算复杂度没有减小；且当数据量比较大时，单个worker存储所有数据代价高  </p>
+</li>
+</ol>
+<p>传统的数据并行<br>（1）水平切分数据，每个worker只有部分数据<br>（2）每个worker根据本地数据统计局部直方图<br>（3）合并所有局部直方图得到全局直方图<br>（4）根据全局直方图进行节点分裂  </p>
+<p>缺点：网络通信代价巨大  </p>
+<p>LightGBM的数据并行<br>（1）不同的worker合并不同特征的局部直方图<br>（2）采用直方图做差算法，只需要通信一个节点的直方图</p>
+<p>LightGBM其他地方的改进：  </p>
+<h1 id="-11"><a href="#-11" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9ylg5zfxj30sn0j2jwd.jpg" alt=""></h1><h3 id="Xgboost和GBDT的区别"><a href="#Xgboost和GBDT的区别" class="headerlink" title="Xgboost和GBDT的区别"></a>Xgboost和GBDT的区别</h3><ol>
+<li><p>传统GBDT以CART作为基分类器，xgboost还支持线性分类器，这个时候xgboost相当于带L1和L2正则化项的逻辑斯蒂回归（分类问题）或者线性回归（回归问题）。</p>
+</li>
+<li><p>传统GBDT在优化时只用到一阶导数信息，xgboost则对代价函数进行了二阶泰勒展开，同时用到了一阶和二阶导数。顺便提一下，xgboost工具支持自定义代价函数，只要函数可一阶和二阶求导。</p>
+</li>
+<li><p>xgboost在代价函数里加入了正则项，用于控制模型的复杂度。正则项里包含了树的叶子节点个数、每个叶子节点上输出的score的L2模的平方和。从Bias-variance tradeoff角度来讲，正则项降低了模型的variance，使学习出来的模型更加简单，防止过拟合，这也是xgboost优于传统GBDT的一个特性。</p>
+</li>
+<li><p>Shrinkage（缩减），相当于学习速率（xgboost中的eta）。xgboost在进行完一次迭代后，会将叶子节点的权重乘上该系数，主要是为了削弱每棵树的影响，让后面有更大的学习空间。实际应用中，一般把eta设置得小一点，然后迭代次数设置得大一点。（补充：传统GBDT的实现也有学习速率）</p>
+</li>
+<li><p>列抽样（column subsampling）。xgboost借鉴了随机森林的做法，支持列抽样，不仅能降低过拟合，还能减少计算，这也是xgboost异于传统gbdt的一个特性。</p>
+</li>
+<li><p>对缺失值的处理。对于特征的值有缺失的样本，xgboost可以自动学习出它的分裂方向。</p>
+</li>
+<li><p>xgboost工具支持并行。boosting不是一种串行的结构吗?怎么并行的？注意xgboost的并行不是tree粒度的并行，xgboost也是一次迭代完才能进行下一次迭代的（第t次迭代的代价函数里包含了前面t-1次迭代的预测值）。xgboost的并行是在特征粒度上的。我们知道，决策树的学习最耗时的一个步骤就是对特征的值进行排序（因为要确定最佳分割点），xgboost在训练之前，预先对数据进行了排序，然后保存为block结构，后面的迭代中重复地使用这个结构，大大减小计算量。这个block结构也使得并行成为了可能，在进行节点的分裂时，需要计算每个特征的增益，最终选增益最大的那个特征去做分裂，那么各个特征的增益计算就可以开多线程进行。</p>
+</li>
+<li><p>可并行的近似直方图算法。树节点在进行分裂时，我们需要计算每个特征的每个分割点对应的增益，即用贪心法枚举所有可能的分割点。当数据无法一次载入内存或者在分布式情况下，贪心算法效率就会变得很低，所以xgboost还提出了一种可并行的近似直方图算法，用于高效地生成候选的分割点。</p>
+</li>
+</ol>
+<h3 id="Xgboost使用经验总结"><a href="#Xgboost使用经验总结" class="headerlink" title="Xgboost使用经验总结"></a>Xgboost使用经验总结</h3><ol>
+<li><p>多类别分类时，类别需要从0开始编码</p>
+</li>
+<li><p>Watchlist不会影响模型训练。</p>
+</li>
+<li><p>类别特征必须编码，因为xgboost把特征默认都当成数值型的</p>
+</li>
+<li><p>训练的时候，为了结果可复现，记得设置随机数种子。</p>
+</li>
+<li><p>XGBoost的特征重要性是如何得到的？某个特征的重要性（feature score），等于它被选中为树节点分裂特征的次数的和，比如特征A在第一次迭代中（即第一棵树）被选中了1次去分裂树节点，在第二次迭代被选中2次…..那么最终特征A的feature score就是 1+2+….</p>
+</li>
+</ol>
+<p>参考链接：<br><a href="http://wepon.me/2016/05/07/XGBoost%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA/" target="_blank" rel="noopener">http://wepon.me/2016/05/07/XGBoost%E6%B5%85%E5%85%A5%E6%B5%85%E5%87%BA/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://ws4.sinaimg.cn/large/006tNbRwly1fwya8hr2b2j30w00w0tb5.jpg" alt="Witton Zhou 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/GBDT-Gradient-Boosting-Decision-Tree/" rel="next" title="GBDT(Gradient Boosting Decision Tree)">
+                <i class="fa fa-chevron-left"></i> GBDT(Gradient Boosting Decision Tree)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Witton Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wittonzhou" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wittonzhou@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浅析Xgboost原理"><span class="nav-number">1.</span> <span class="nav-text">浅析Xgboost原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从参数空间到函数空间"><span class="nav-number">0.1.</span> <span class="nav-text">从参数空间到函数空间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-6"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-7"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-8"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-9"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xgboost的其他特性"><span class="nav-number">0.1.</span> <span class="nav-text">Xgboost的其他特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-10"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LightGBM的改进"><span class="nav-number">0.1.</span> <span class="nav-text">LightGBM的改进</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-11"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xgboost和GBDT的区别"><span class="nav-number">0.1.</span> <span class="nav-text">Xgboost和GBDT的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xgboost使用经验总结"><span class="nav-number">0.2.</span> <span class="nav-text">Xgboost使用经验总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Witton Zhou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

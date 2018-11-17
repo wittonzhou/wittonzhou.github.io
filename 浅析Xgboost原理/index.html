@@ -83,18 +83,20 @@
 
 
 
-<meta name="description" content="浅析Xgboost原理内容 泰勒公式 最优化方法 从参数空间到函数空间 详解Xgboost LightGBM   泰勒公式： 梯度下降法： 牛顿法： 从参数空间到函数空间GBDT在函数空间中利用梯度下降法进行优化Xgboost在函数空间中用牛顿法进行优化   Xgboost的正则项：   误差函数的二阶泰勒展开：   Xgboost的打分函数：   树节点分裂算法–精确算法，遍历所有特征的所有可能">
+<meta name="description" content="浅析Xgboost原理内容 泰勒公式 最优化方法 从参数空间到函数空间 详解Xgboost LightGBM   泰勒公式： 梯度下降法： 牛顿法： 从参数空间到函数空间GBDT在函数空间中利用梯度下降法进行优化Xgboost在函数空间中用牛顿法进行优化   Xgboost的正则项：   上面式子中，第一部分rT，T表示叶子节点的数量，r是超参，也就是说r越大，那么我们的叶子节点数量就会越小。第二">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅析Xgboost原理">
 <meta property="og:url" content="http://yoursite.com/浅析Xgboost原理/index.html">
 <meta property="og:site_name" content="WittonZhou">
-<meta property="og:description" content="浅析Xgboost原理内容 泰勒公式 最优化方法 从参数空间到函数空间 详解Xgboost LightGBM   泰勒公式： 梯度下降法： 牛顿法： 从参数空间到函数空间GBDT在函数空间中利用梯度下降法进行优化Xgboost在函数空间中用牛顿法进行优化   Xgboost的正则项：   误差函数的二阶泰勒展开：   Xgboost的打分函数：   树节点分裂算法–精确算法，遍历所有特征的所有可能">
+<meta property="og:description" content="浅析Xgboost原理内容 泰勒公式 最优化方法 从参数空间到函数空间 详解Xgboost LightGBM   泰勒公式： 梯度下降法： 牛顿法： 从参数空间到函数空间GBDT在函数空间中利用梯度下降法进行优化Xgboost在函数空间中用牛顿法进行优化   Xgboost的正则项：   上面式子中，第一部分rT，T表示叶子节点的数量，r是超参，也就是说r越大，那么我们的叶子节点数量就会越小。第二">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9ptfs9ucj30um0n0aed.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xboi1ysj30sp0lcwio.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xeiixnhj30sg0l8n0g.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xjetx2jj30sn0lgjuw.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx9yv4msvjj30s90lk78t.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxaz43w8h1j30jw04wmxb.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxaz4r5njoj30pe044aac.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yzlike8j30t10lqad5.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNbRwly1fx9z08gz61j30sy0lfgo4.jpg">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yxgpquwj30sw0l3n0m.jpg">
@@ -102,10 +104,10 @@
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xssxkooj30sl0lan4w.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx9y1tzmfoj30sr0kv0z5.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fx9ylg5zfxj30sn0j2jwd.jpg">
-<meta property="og:updated_time" content="2018-11-16T08:12:56.844Z">
+<meta property="og:updated_time" content="2018-11-17T05:04:14.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析Xgboost原理">
-<meta name="twitter:description" content="浅析Xgboost原理内容 泰勒公式 最优化方法 从参数空间到函数空间 详解Xgboost LightGBM   泰勒公式： 梯度下降法： 牛顿法： 从参数空间到函数空间GBDT在函数空间中利用梯度下降法进行优化Xgboost在函数空间中用牛顿法进行优化   Xgboost的正则项：   误差函数的二阶泰勒展开：   Xgboost的打分函数：   树节点分裂算法–精确算法，遍历所有特征的所有可能">
+<meta name="twitter:description" content="浅析Xgboost原理内容 泰勒公式 最优化方法 从参数空间到函数空间 详解Xgboost LightGBM   泰勒公式： 梯度下降法： 牛顿法： 从参数空间到函数空间GBDT在函数空间中利用梯度下降法进行优化Xgboost在函数空间中用牛顿法进行优化   Xgboost的正则项：   上面式子中，第一部分rT，T表示叶子节点的数量，r是超参，也就是说r越大，那么我们的叶子节点数量就会越小。第二">
 <meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fx9ptfs9ucj30um0n0aed.jpg">
 
 
@@ -329,11 +331,15 @@
 <h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xboi1ysj30sp0lcwio.jpg" alt=""></h1><p>牛顿法：</p>
 <h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xeiixnhj30sg0l8n0g.jpg" alt=""></h1><h3 id="从参数空间到函数空间"><a href="#从参数空间到函数空间" class="headerlink" title="从参数空间到函数空间"></a>从参数空间到函数空间</h3><p>GBDT在函数空间中利用梯度下降法进行优化<br>Xgboost在函数空间中用牛顿法进行优化  </p>
 <h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xjetx2jj30sn0lgjuw.jpg" alt=""></h1><p>Xgboost的正则项：  </p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9yv4msvjj30s90lk78t.jpg" alt=""></h1><p>误差函数的二阶泰勒展开：  </p>
-<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yzlike8j30t10lqad5.jpg" alt=""></h1><h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9z08gz61j30sy0lfgo4.jpg" alt=""></h1><p>Xgboost的打分函数：  </p>
-<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yxgpquwj30sw0l3n0m.jpg" alt=""></h1><p>树节点分裂算法–精确算法，遍历所有特征的所有可能的分割点，计算gain值，选取值最大的（feature，value）去分割</p>
-<h1 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9xqat898j30su0ldgst.jpg" alt=""></h1><p>树节点分裂方法–近似算法，对于每个特征，只考察分位点，减少计算复杂度</p>
-<h1 id="-9"><a href="#-9" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xssxkooj30sl0lan4w.jpg" alt=""></h1><p>树节点分裂方法–近似算法举例：三分位数  </p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9yv4msvjj30s90lk78t.jpg" alt=""></h1><p>上面式子中，第一部分rT，T表示叶子节点的数量，r是超参，也就是说r越大，那么我们的叶子节点数量就会越小。第二部分是L2正则项，通过对叶子结点的权重进行惩罚，使得不会存在权重过大的叶子结点防止过拟合。w就表示叶子结点的权重。  </p>
+<p>但是对于上面这么一个目标函数，我们是很难进行优化的，于是我们将它变换一下，我们通过每一步增加一个基分类器ft，贪婪地去优化这个目标函数，使得每次增加，都使得loss变小。如此一来，我们就得到了一个可以用于评价当前分类器ft性能的一个评价函数：  </p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxaz43w8h1j30jw04wmxb.jpg" alt=""></h1><p>这个算法又可以称为前向分步优化。为了更快地去优化这个函数，我们可以在ft=0处二阶泰勒展开：  </p>
+<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxaz4r5njoj30pe044aac.jpg" alt=""></h1><p>由于我们的目标函数L只受函数f的影响，上一次的loss对本次迭代并没有影响，于是我们可以删除掉常数项。  </p>
+<p>误差函数的二阶泰勒展开：  </p>
+<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yzlike8j30t10lqad5.jpg" alt=""></h1><h1 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9z08gz61j30sy0lfgo4.jpg" alt=""></h1><p>Xgboost的打分函数：  </p>
+<h1 id="-9"><a href="#-9" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yxgpquwj30sw0l3n0m.jpg" alt=""></h1><p>树节点分裂算法–精确算法，遍历所有特征的所有可能的分割点，计算gain值，选取值最大的（feature，value）去分割</p>
+<h1 id="-10"><a href="#-10" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9xqat898j30su0ldgst.jpg" alt=""></h1><p>树节点分裂方法–近似算法，对于每个特征，只考察分位点，减少计算复杂度</p>
+<h1 id="-11"><a href="#-11" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xssxkooj30sl0lan4w.jpg" alt=""></h1><p>树节点分裂方法–近似算法举例：三分位数  </p>
 <p>实际上Xgboost不是简单地按照样本个数进行分为，而是以二阶导数值作为权重。</p>
 <h3 id="Xgboost的其他特性"><a href="#Xgboost的其他特性" class="headerlink" title="Xgboost的其他特性"></a>Xgboost的其他特性</h3><ol>
 <li>行抽样（row sample）</li>
@@ -342,7 +348,7 @@
 <li>支持自定义损失函数（需二阶可导）</li>
 </ol>
 <p>Column Block 和 Cache Aware Access：  </p>
-<h1 id="-10"><a href="#-10" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9y1tzmfoj30sr0kv0z5.jpg" alt=""></h1><h3 id="LightGBM的改进"><a href="#LightGBM的改进" class="headerlink" title="LightGBM的改进"></a>LightGBM的改进</h3><ol>
+<h1 id="-12"><a href="#-12" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9y1tzmfoj30sr0kv0z5.jpg" alt=""></h1><h3 id="LightGBM的改进"><a href="#LightGBM的改进" class="headerlink" title="LightGBM的改进"></a>LightGBM的改进</h3><ol>
 <li><p>直方图算法：<br>把连续的浮点特征值离散化成k个整数，同时构造一个宽度为k的直方图。在遍历数据的时候，根据离散化后的值作为索引在直方图中累积统计量，当遍历一次数据后，直方图累积了需要的统计量，然后根据直方图的离散值，遍历寻找最优的分割点。  </p>
 <p> 这样减少了内存占用；也减少了split finding时计算增益的计算量。</p>
 </li>
@@ -358,7 +364,7 @@
 <p>缺点：网络通信代价巨大  </p>
 <p>LightGBM的数据并行<br>（1）不同的worker合并不同特征的局部直方图<br>（2）采用直方图做差算法，只需要通信一个节点的直方图</p>
 <p>LightGBM其他地方的改进：  </p>
-<h1 id="-11"><a href="#-11" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9ylg5zfxj30sn0j2jwd.jpg" alt=""></h1><h3 id="Xgboost和GBDT的区别"><a href="#Xgboost和GBDT的区别" class="headerlink" title="Xgboost和GBDT的区别"></a>Xgboost和GBDT的区别</h3><ol>
+<h1 id="-13"><a href="#-13" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9ylg5zfxj30sn0j2jwd.jpg" alt=""></h1><h3 id="Xgboost和GBDT的区别"><a href="#Xgboost和GBDT的区别" class="headerlink" title="Xgboost和GBDT的区别"></a>Xgboost和GBDT的区别</h3><ol>
 <li><p>传统GBDT以CART作为基分类器，xgboost还支持线性分类器，这个时候xgboost相当于带L1和L2正则化项的逻辑斯蒂回归（分类问题）或者线性回归（回归问题）。</p>
 </li>
 <li><p>传统GBDT在优化时只用到一阶导数信息，xgboost则对代价函数进行了二阶泰勒展开，同时用到了一阶和二阶导数。顺便提一下，xgboost工具支持自定义代价函数，只要函数可一阶和二阶求导。</p>
@@ -575,7 +581,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浅析Xgboost原理"><span class="nav-number">1.</span> <span class="nav-text">浅析Xgboost原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从参数空间到函数空间"><span class="nav-number">0.1.</span> <span class="nav-text">从参数空间到函数空间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-6"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-7"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-8"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-9"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xgboost的其他特性"><span class="nav-number">0.1.</span> <span class="nav-text">Xgboost的其他特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-10"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LightGBM的改进"><span class="nav-number">0.1.</span> <span class="nav-text">LightGBM的改进</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-11"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xgboost和GBDT的区别"><span class="nav-number">0.1.</span> <span class="nav-text">Xgboost和GBDT的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xgboost使用经验总结"><span class="nav-number">0.2.</span> <span class="nav-text">Xgboost使用经验总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浅析Xgboost原理"><span class="nav-number">1.</span> <span class="nav-text">浅析Xgboost原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从参数空间到函数空间"><span class="nav-number">0.1.</span> <span class="nav-text">从参数空间到函数空间</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-6"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-7"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-8"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-9"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-10"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-11"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xgboost的其他特性"><span class="nav-number">0.1.</span> <span class="nav-text">Xgboost的其他特性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-12"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LightGBM的改进"><span class="nav-number">0.1.</span> <span class="nav-text">LightGBM的改进</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-13"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xgboost和GBDT的区别"><span class="nav-number">0.1.</span> <span class="nav-text">Xgboost和GBDT的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xgboost使用经验总结"><span class="nav-number">0.2.</span> <span class="nav-text">Xgboost使用经验总结</span></a></li></ol></li></ol></div>
             
 
           </div>

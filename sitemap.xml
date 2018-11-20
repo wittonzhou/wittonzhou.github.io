@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87%E3%80%8ADeepFM%E3%80%8B/</loc>
+    
+    <lastmod>2018-11-20T07:04:41.360Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/%E6%B5%85%E6%9E%90Xgboost%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2018-11-17T05:04:14.319Z</lastmod>

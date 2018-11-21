@@ -317,10 +317,11 @@
 <h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxdq9njzhkj30f608j0uh.jpg" alt=""></h1><p>处理特征之间的线性相互作用之外，FM模型成对（2阶）相互作用作为各个特征潜在向量的内积。在先前的方法中，仅当特征i和特征j都出现在同一数据记录中时，才能训练特征i和j的交互的参数。在FM中，它是通过它们的潜在向量Vi和Vj的内积来测量的。 由于这种灵活的设计，只要i（或j）出现在数据记录中，FM就可以训练潜在向量Vi（Vj）。  </p>
 <h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxeizdpghaj30gg05ndgi.jpg" alt=""></h1><p>上式中，左边部分反映了1阶特征的重要性，右边部分反映了2阶特征交互的重要性。</p>
 <p>Deep部分</p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxdq8mo0pfj30f8099myy.jpg" alt=""></h1><p>Deep部分与其他神经网络相比，不同于图像和音频的密集的数据输入，CTR预测的输入是完全不同的，所以需要新的网络结构设计。具体而言，CTR预测的原始特征输入向量通常是高度稀疏的、超高维度的、类别值和连续值混合的、并且在field中分好组的。这表明嵌入层应该在进一步馈入第一个隐藏层之前将输入向量压缩为低维密集的实值向量。</p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxdq8mo0pfj30f8099myy.jpg" alt=""></h1><p>Deep部分与其他神经网络相比，不同于图像和音频的密集的数据输入，CTR预测的输入是完全不同的，所以需要新的网络结构设计。具体而言，CTR预测的原始特征输入向量通常是高度稀疏的、超高维度的、类别值和连续值混合的、并且在field中分好组的。这表明嵌入层应该在进一步馈入第一个隐藏层之前将输入向量压缩为低维稠密向量。这里的输入向量是类别型特征经过独热编码的（如果是数值型特征则先离散化）。</p>
 <p>输入层到嵌入层的结构：</p>
 <h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxechdxmenj30dt05k0tr.jpg" alt=""></h1><p>这种结构有两个好处：  </p>
-<p>（1）虽然input field vectors 可以是不同长度的，但是它们的嵌入是相同size 的,size = k<br>（2）现在隐特征向量V在FM中是网络权重，被用于将input field vectors压缩到embedding vectors  </p>
+<p>（1）虽然input field vectors 可以是不同长度的，但是它们的嵌入是相同size 的,size = k<br>（2）FM中的隐向量V现在作为神经网络的权重，被用于将input field vectors压缩到embedding vectors  </p>
+<p>embedding层的输出是m个field对应的e向量，传入DNN，最后得到一个稠密实值向量，经过一个sigmoid函数得到预测的CTR。</p>
 <p>这样，我们不再需要通过FM进行预训练，而是以端到端的方式联合训练整个网络。嵌入层的输出表示为：</p>
 <h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxej4oasemj30gd09nmyr.jpg" alt=""></h1><p>FM部分和Deep部分共享相同的特征嵌入，这带来了两点好处：<br>（1）它能从原始特征中学习到低阶和高阶的特征交互<br>（2）它不需要专业的特征工程，而在Wide&amp;Deep中是需要的  </p>
 <h3 id="与其他模型比较"><a href="#与其他模型比较" class="headerlink" title="与其他模型比较"></a>与其他模型比较</h3><p>FNN：<br>FNN[Zhang et al., 2016]是FM初始化的前馈神经网络。FM预训练策略导致两个局限：1）嵌入参数可能受到FM的影响; 2）预训练阶段引入的开销减少了效率。此外，FNN仅捕获高阶特征交互。相比之下，DeepFM不需要预训练，可以学习高阶和低阶特征交互。  </p>

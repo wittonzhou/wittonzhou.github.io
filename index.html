@@ -233,6 +233,127 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/优化算法总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Witton Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WittonZhou">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/优化算法总结/" itemprop="url">优化算法总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-11T09:34:08+08:00">
+                2018-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="自适应学习率算法"><a href="#自适应学习率算法" class="headerlink" title="自适应学习率算法"></a>自适应学习率算法</h2><p>损失通常高度敏感于参数空间中的某些方向，而不敏感于其他。动量算法可以在一定程度上缓解这个问题，但这样做的代价是引入了另一个超参数。  </p>
+<h3 id="AdaGrad"><a href="#AdaGrad" class="headerlink" title="AdaGrad"></a>AdaGrad</h3><p>独立地适应所有模型参数的学习率，缩放每个参数反比与其他所有梯度历史平方值总和的平方根。具有损失最大偏导的参数相应地有一个快速下降的学习率，而具有小偏导的参数在学习率上有相对较小的下降。净效果是，在参数空间中更为平缓的倾斜方向会取得更大的进步。  </p>
+<h3 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h3><h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/读论文-《Wide-Deep》/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -965,14 +1086,14 @@
             <h2 id="《解析卷积神经网络–深度学习实践手册》-作者魏秀参"><a href="#《解析卷积神经网络–深度学习实践手册》-作者魏秀参" class="headerlink" title="《解析卷积神经网络–深度学习实践手册》 作者魏秀参"></a>《解析卷积神经网络–深度学习实践手册》 作者魏秀参</h2><hr>
 <h3 id="1-CNN基本部件"><a href="#1-CNN基本部件" class="headerlink" title="1.CNN基本部件"></a>1.CNN基本部件</h3><p>1.1 深度学习的“端到端”学习方式  </p>
 <p>深度学习的一个重要思想“端到端”的学习方式，属于表示学习的一种。其他机器学习算法，如特征选择算法、分类器算法、集成学习算法等，均假设样本特征表示是给定的，并在此基础上设计具体的机器学习算法。在深度学习时代之前，样本表示基本都使用人工特征，但是人工特征的优劣往往很大程度决定了最终的任务精度。而在深度学习普及之后，人工特征已逐渐被表示学习根据任务自动需求“学到”的特征表示所取代。  </p>
-<p>过去解决一个人工智能问题（以图像识别为例）往往通过分 治法将其分解为预处理、特征提取与选择、分类器设计等若干步骤。子问题上的最优解并不意味着就能得到全局问题的最后解。深度学习为我们提供了另一种学习方式，即“端到端”学习方式，整个学习流程并不进行人为的子问题划分，而是完全交给深度学习模型直接学习从原始输入到期望输出的映射。  </p>
-<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx6t3lctu4j30ib08i75g.jpg" alt=""></h1><p>1.2 卷积层<br>卷积层的“权值共享”特征<br>卷积操作的两个重要的超参数：卷积核大小（filter size）和卷积步长（stride）。  </p>
+<p>过去解决一个人工智能问题（以图像识别为例）往往通过分治法将其分解为预处理、特征提取与选择、分类器设计等若干步骤。子问题上的最优解并不意味着就能得到全局问题的最后解。深度学习为我们提供了另一种学习方式，即“端到端”学习方式，整个学习流程并不进行人为的子问题划分，而是完全交给深度学习模型直接学习从原始输入到期望输出的映射。  </p>
+<p>1.2 卷积层<br>卷积层是卷积神经网络中的基础操作，甚至在网络最后起分类作用的全连接层在工程实现时也是由卷积操作替代的。 卷积层有一个独特的特征：“权值共享”特征。<br>卷积操作的两个重要的超参数：卷积核大小（filter size）和卷积步长（stride）。  </p>
 <p>1.3 池化（pooling）层<br>文中翻译为汇合层。<br>通常使用的汇合操作为平均值汇合和最大值汇合，还有随机汇合介于二者之间。<br>汇合操作实际上就是一种“降采样”操作，另一方面，汇合也看成是一个用p-范数作为非线性映射的“卷积”操作，当p趋近正无穷时就是最常见的最大值汇合。<br>汇合层的引入是仿照人的视觉系统对视觉输入对象进行降维（降采样）和抽象。汇合层有以下三种功效：<br>1.特征不变性。汇合操作时模型更关注是否存在某些特征而不是特征具体的位置，使特征学习包含某种程度自由度，能容忍一些特征微小的位移。<br>2.特征降维。汇合相当于空间范围内做了维度约减，从而使模型可以抽取更广范围的特征。同时减小了下一层输入大小，进而减少计算量和参数个数。<br>3.在一定程度上防止过拟合，更方便优化。  </p>
 <p>汇合操作并不是CNN必须的元件或操作。  </p>
 <p>1.4 激活函数<br>激活函数的引入为的是增加整个网络的表达能力（即非线性）。<br>Sigmoid型函数将输出响应的值域被压缩到[0,1]之间，0对应了生物神经元的“抑制状态”，1则对应了“兴奋状态”。Sigmoid有一个严重的问题，即梯度的“饱和效应”。在输出值接近1时，梯度接近0，这会导致在误差反向传播过程中导数处于该区域的误差将很难甚至根本无法传递到前层，进而导致整个网络无法训练。<br>ReLU函数是目前深度卷积神经网络中最为常用的激活函数之一。ReLU函数的梯度在x&gt;=0时为1，反之为0。对x&gt;=0部分完全消除了Sigmoid型函数的梯度饱和效应。ReLU函数还有助于随机梯度下降方法收敛，收敛速度约快6倍左右。  </p>
 <p>1.5 全连接层<br>全连接层起到将学到的特征表示映射到样本的标记空间的作用。  </p>
 <p>1.6 目标函数<br>目标函数的作用是用来衡量该预测值与真实样本标记之间的误差。  </p>
-<h3 id="2-卷积神经网络经典结构"><a href="#2-卷积神经网络经典结构" class="headerlink" title="2.卷积神经网络经典结构"></a>2.卷积神经网络经典结构</h3><ol>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx6t3lctu4j30ib08i75g.jpg" alt=""></h1><h3 id="2-CNN经典结构"><a href="#2-CNN经典结构" class="headerlink" title="2.CNN经典结构"></a>2.CNN经典结构</h3><ol>
 <li><p>感受野<br>随着网络深度的加深，后层神经元在第一层输入层的感受野会随之增大。也就是说，小卷积核通过多层叠加可取得与大卷积核同等规模的感受野。<br>小卷积核的优势：<br>（1）由于小卷积核需要多层叠加，加深了网络深度进而增强了网络容量<br>（2）增强网络容量的同时减少了参数个数  </p>
 </li>
 <li><p>残差网络模型<br>神经网络的深度和宽度是表征网络复杂度的两个核心因素，不过深度相比宽度在增加网络的复杂度方面更有效。然而，随着深度的增加，训练会变得愈加困难。这主要因为在基于随机梯度下降的网络训练过程中，误差信号的多层反向传播非常容易引发梯度“弥散”或者“爆炸”。一些特殊的权重初始化策略和批规范化（batch normalization）可以使这个问题得到极大的改善，但是效果有限。<br>当深度网络收敛时，另外的问题又随之而来：随着继续增加网络的深度，训练数据的训练误差没有降低反而升高。残差网络很好的解决了这个问题。  </p>
@@ -996,7 +1117,7 @@
 <ol start="6">
 <li>紧凑的网络结构<br> 直接训练小模型。设计上不容易，依赖经验和技巧。随着参数数量的降低，网络的泛化性不一定能得到保障。 </li>
 </ol>
-<h3 id="4-数据扩充"><a href="#4-数据扩充" class="headerlink" title="4.数据扩充"></a>4.数据扩充</h3><p>数据扩充是深度模型训练前的必须一步，此操作可扩充训练数据集，增强数据多样性，防止模型过拟合。<br>简单的数据扩充方式有：水平翻转，随机扣取，尺度变换，旋转等<br>对原图或已变换的图像进行色彩抖动。<br>实践中，往往会将上述几种方式叠加使用，如此可将图像数据扩充至原有数据的数倍甚至数十倍。  </p>
+<h3 id="4-数据扩充"><a href="#4-数据扩充" class="headerlink" title="4.数据扩充"></a>4.数据扩充</h3><p>数据扩充是深度模型训练前的必须一步，此操作可扩充训练数据集，增强数据多样性，防止模型过拟合。<br>简单的数据扩充方式有：水平翻转，随机扣取，尺度变换，旋转等; 对原图或已变换的图像进行色彩抖动。<br>实践中，往往会将上述几种方式叠加使用，如此可将图像数据扩充至原有数据的数倍甚至数十倍。  </p>
 <p>特殊的数据扩充方式：  </p>
 <ol>
 <li>Fancy PCA  </li>
@@ -1005,15 +1126,12 @@
 <h3 id="5-数据预处理"><a href="#5-数据预处理" class="headerlink" title="5.数据预处理"></a>5.数据预处理</h3><p>机器学习中， 对于输入特征做归一化预处理操作是常见的步骤。类似的，在图像处理中，图像的每个像素信息同样可以看做一种特征。在实践中，对每个特征减去平均值来中心化数据是非常重要的，这种归一化处理方式被称作“中心式归一化”（mean normalization）。<br>减均值操作的原理是，我们默认自然图像是一类平稳的数据分布（即数据每一个维度的统计都服从相同分布），此时，在每个样本上减去数据的统计平均值（逐样本计算）可以移除共同部分，凸显个体差异。<br>需要注意的是，在实际操作中应首先划分好训练集、验证集和测试集，而该均值仅针对划分后的训练集计算。不可直接在未划分的所有图像上计算均值，如此会违背机器学习基本原理，即“模型训练过程中能且仅能从训练数据中获取信息”。  </p>
 <h3 id="6-网络参数初始化"><a href="#6-网络参数初始化" class="headerlink" title="6.网络参数初始化"></a>6.网络参数初始化</h3><p>理想的网络参数初始化使模型训练事半功倍，相反，糟糕的初始化方案不仅会影响网络收敛甚至会导致梯度弥散或爆炸致使训练失败。介绍几种目前实践中常用的几种网络参数初始化方式。  </p>
 <ol>
-<li><p>全零初始化  </p>
-<p> 当网络收敛到稳定状态时，参数（权值）在理想情况下应基本保持正负各半的状态（此时期望为 0）。因此，一种简单且听起来合理的参数初始化做法是，干脆将所有参数都初始化为0，因为这样可使得初始化全零时参数的期望与网络稳定时参数的期望一致为零。  </p>
+<li><p>全零初始化<br> 当网络收敛到稳定状态时，参数（权值）在理想情况下应基本保持正负各半的状态（此时期望为 0）。因此，一种简单且听起来合理的参数初始化做法是，干脆将所有参数都初始化为0，因为这样可使得初始化全零时参数的期望与网络稳定时参数的期望一致为零。  </p>
 <p> 不过，细细想来则会发现参数全为0时网络不同神经元的输出必然相同，相同输出则导致梯度更新完全一样，这样便会令更新后的参数仍然保持一样的状态。换句话说，如若参数进行了全零初始化，那么网络神经元将毫无能力对此做出改变，从而无法进行模型训练。</p>
 </li>
 <li><p>随机初始化  </p>
 <p> 将参数随机化自然是打破上述“僵局”的一个有效手段，不过我们仍然希望所有参数期望依旧接近0。遵循这一原则，我们可将参数值随机设定为接近0的一个很小的随机数（有正有负）。在实际应用中，随机参数服从高斯分布或均匀分布都是较有效的初始化方式。还有一个问题，网络输出数据分布的方差会随着输入神经元个数改变。所以会在初始化的同时加上方差大小的规范化。  </p>
 </li>
-</ol>
-<ol start="3">
 <li><p>其他初始化方法  </p>
 <p> 利用预训练模型—-将预训练模型的参数作为新任务上模型的参数初始化。</p>
 </li>
@@ -1041,8 +1159,9 @@
 <li>中心损失函数  </li>
 </ol>
 <p>总结：<br>交叉熵损失函数是最为常用的分类目标函数，且效果一般优于合页损失函数；<br>大间隔损失函数和中心损失函数从增大类间距离、减小类内距离的角度不仅要求分类准确，而且还有助提高特征的分辨能力；<br>坡道损失函数是分类问题目标函数中的一类非凸损失函数，由于其良好的抗噪特性，推荐将其用于样本噪声或离群点较多的分类任务。  </p>
-<h3 id="9-网络正则化"><a href="#9-网络正则化" class="headerlink" title="9.网络正则化"></a>9.网络正则化</h3><p>1.L2正则化<br>L2正则化方式在深度学习中有个常用的叫法是“权重衰减”， 另外L2正则化在机器学习中还被称作“岭回归”或Tikhonov正则化。  </p>
-<p>2.L1正则化  </p>
+<h3 id="9-网络正则化"><a href="#9-网络正则化" class="headerlink" title="9.网络正则化"></a>9.网络正则化</h3><p>机器学习的一个核心问题是如何使学习算法不仅在训练样本上表现良好，并且在新数据或测试集上同样奏效，学习算法在新数据上的这样一种表现我们称之为模型的“泛化能力”。若某学习算法在训练集表现优异，同时在测试集依然表现良好，可以说该学习算法有较强泛化能力。  </p>
+<p>1.L2正则化<br>L2正则化方式在深度学习中有个常用的叫法是“权重衰减”， 另外L2正则化在机器学习中还被称作“岭回归”或Tikhonov正则化。  </p>
+<p>2.L1正则化<br>需注意，L1正则化除了同L2正则化一样能约束参数量级外，L1正则化还能起到使参数更稀疏的作用。稀疏化的结果使优化后的参数一部分为 ，另一部分为非零实值。非零实值的那部分参数可起到选择重要参数或特征维度的作用， 同时可起到去除噪声的效果。  </p>
 <p>3.最大范数约束<br>最大范数约束是通过向参数量级的范数设置上限对网络进行正则化的手段。  </p>
 <p>4.dropout(随机失活)<br>随机失活的提出正是一定程度上缓解了神经元之间复杂的协同适应，降低了神经元间依赖，避免了网络过拟合的发生。其原理非常简单：对于某层的每个神经元，在训练阶段均以概率 p 随机将该神经元权重置0（故被称作“随机失活”），测试阶段所有神经元均呈激活态，但其权重需乘 (1 − p) 以保证训练和测试阶段各自权重拥有相同的期望。  </p>
 <p>由于失活的神经元无法参与到网络训练，因此每次训练（前向操作和反向操作）时相当于面对一个全新网络。以含两层网络、各层有三个神经元的简单神经网络为例，若每层随机失活一个神经元，该网络共可产生9种子网络。根据上述随机失活原理，训练阶段相当于共训练了9个子网络，测试阶段则相当于9个子网络的平均集成。  </p>
@@ -1060,7 +1179,7 @@
 <li>训练数据随机打乱<br> 在训练卷积神经网络时，尽管训练数据固定，但由于采用了随机批处理（mini-batch）的训练机制，因此我们可在模型每轮（epoch）训练进行前将训练数据集随机打乱（shuffle），确保模型不同轮数相同批次“看到”的数据是不同的。  </li>
 <li>学习率的设定<br> （1）模型训练开始时的初始学习率不宜过大，以0.01和0.001为宜<br> （2）模型训练过程中，学习率应随轮数增加而减缓。也可以分为，轮数减缓、指数减缓、分数减缓。  </li>
 <li><p>批规范操作（BN）<br> 在模型每次随机梯度下降训练时，通过mini-batch来对相应的网络响应做规范化操作，使得结果（输出信号各个维度）的均值为0，方差为1。算法如下：<br>  <img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx7v7i4ywgj30ix08uwg0.jpg" alt="">  </p>
-<p> BN奏效的原因：在统计机器学习中的一个经典假设是“源空间和目标空间的数据分布（是一致的”。如果不一致，那么就出现了新的机器学习问题，如迁移学习等。通过BN来规范化某些层或所有层的输入，从而可以固定每层输入信号的均值与方差。这样一来，即使网络模型较深层的响应或梯度很小，也可通过BM的规范化作用将其的尺度变大，以此便可解决深层网络训练很可能带来的“梯度弥散” 问题。  </p>
+<p> BN奏效的原因：在统计机器学习中的一个经典假设是“源空间和目标空间的数据分布是一致的”。如果不一致，那么就出现了新的机器学习问题，如迁移学习等。通过BN来规范化某些层或所有层的输入，从而可以固定每层输入信号的均值与方差。这样一来，即使网络模型较深层的响应或梯度很小，也可通过BM的规范化作用将其的尺度变大，以此便可解决深层网络训练很可能带来的“梯度弥散” 问题。  </p>
 </li>
 <li>网络模型优化算法选择<br> （1）随机梯度下降法。经典的随机梯度下降是最常见的神经网络优化方法，收敛效果较稳定，不过收敛速度过慢。<br> （2）基于动量的随机梯度下降法。<br> （3）Nesterov型动量随机下降法。<br> （4）Adagrad法。<br> （5）Adadelta法。<br> （6）RMSProp法。<br> （7）Adam法。  </li>
 <li>微调神经网络<br> 微调预训练模型简单来说，就是用目标任务数据在原先预训练模型上继续进行训练过程。微调预训练模型时，需注意学习率调整和原始数据与目标数据的关系。另外，还可使用“多目标学习框架”对预训练模型进行微调。  </li>
@@ -1599,133 +1718,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/读论文-Factorization-Machines/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Witton Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WittonZhou">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/读论文-Factorization-Machines/" itemprop="url">读论文: Factorization Machines</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-24T19:04:35+08:00">
-                2018-09-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="《Factorization-Machines》-2010"><a href="#《Factorization-Machines》-2010" class="headerlink" title="《Factorization Machines》,2010"></a>《Factorization Machines》,2010</h2><p>模型：</p>
-<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwgy1fvku7ctissj30r60jatbg.jpg" alt=""></h1><p>vi的维度k反映了模型的表达能力。<br>如果k被选择地足够大，则FM可以表达任何交互矩阵W。然而在稀疏的情况下，k通常是小的。因为没有足够的数据来估计复杂的W。限制k的大小，会有更好的泛化性能。</p>
-<p>推导：</p>
-<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fvku82r8tjj30qk0jm76d.jpg" alt=""></h1><p>可知FM参数训练的复杂度为O(kn)。此外，在稀疏的情况下，只用计算非零元素的sum，FM的计算复杂度会更小。</p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>1.FM结合了SVM和因式分解模型二者的优势。<br>2.FM可以处理稀疏的数据，而SVM不能。其中，FM处理稀疏数据主要机制是：因式分解参数可以对任何两个特征直接做组合。而SVM在处理稀疏数据的情况下，不能在复杂核空间中学习到可信赖的参数（超平面）。<br>3.FM可以在线性时间完成计算，不需要像SVM去做对偶转换。</p>
-<h2 id="FM的优点"><a href="#FM的优点" class="headerlink" title="FM的优点"></a>FM的优点</h2><p>1.FM允许在SVM失败的非常稀疏的数据下进行参数估计<br>2.FM具有线性复杂度，可以在原始中进行优化，而不依赖于支持向量，如SVM。<br>3.FM是一种可以与任何实值特征向量一起使用的通用预测器。与此相反，其他最先进的分解模型仅适用于非常有限的输入数据。</p>
-<h2 id="FM与SVM比较"><a href="#FM与SVM比较" class="headerlink" title="FM与SVM比较"></a>FM与SVM比较</h2><p>1.SVM的密集参数化需要直接观察相互作用，这个在稀疏设置中通常不会给出。即使在稀疏的情况在，也可以很好的估计FM的参数。<br>2.FM可以在原始中直接学习。非线性SVM通常在对偶形式中学习。<br>3.FMs的模型方程独立于训练数据。使用SVM进行预测取决于训练数据的部分（支持向量）。<br>4.FM计算时间与参数是呈线性关系，存储模型的时候也不需要存储训练数据，而SVM需要存存储训练数据（支持向量），SVM在对偶空间中优化。</p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>回归，二分类，排序</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1776,7 +1768,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

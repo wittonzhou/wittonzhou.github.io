@@ -83,17 +83,24 @@
 
 
 
-<meta name="description" content="《Field-aware Factorization Machines for CTR Prediction》,2016摘要1.在CTR预估上FFM性能超过了FM">
+<meta name="description" content="《Field-aware Factorization Machines for CTR Prediction》,2016概述在FM模型中，每一个特征会对应一个隐变量，但在FFM模型中，认为应该将特征分为多个field，每个特征对应每个field分别有一个隐变量。   举个例子，我们的样本有3种类型的字段：publisher, advertiser, gender，分别可以代表媒体，广告主或者是具体">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读论文:FFM">
 <meta property="og:url" content="http://yoursite.com/读论文-FFM/index.html">
 <meta property="og:site_name" content="WittonZhou">
-<meta property="og:description" content="《Field-aware Factorization Machines for CTR Prediction》,2016摘要1.在CTR预估上FFM性能超过了FM">
+<meta property="og:description" content="《Field-aware Factorization Machines for CTR Prediction》,2016概述在FM模型中，每一个特征会对应一个隐变量，但在FFM模型中，认为应该将特征分为多个field，每个特征对应每个field分别有一个隐变量。   举个例子，我们的样本有3种类型的字段：publisher, advertiser, gender，分别可以代表媒体，广告主或者是具体">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T14:42:55.839Z">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fyccqhjk48j30e202o3yl.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fyccr4ugzxj30ec02qglo.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fyccs6z2vgj30iw02idg0.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNbRwly1fyccsimdy2j30fk00ygll.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fycctcry83j30g80323ym.jpg">
+<meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fyccuxy5pyj30ja0bkmyy.jpg">
+<meta property="og:updated_time" content="2018-12-19T13:04:23.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读论文:FFM">
-<meta name="twitter:description" content="《Field-aware Factorization Machines for CTR Prediction》,2016摘要1.在CTR预估上FFM性能超过了FM">
+<meta name="twitter:description" content="《Field-aware Factorization Machines for CTR Prediction》,2016概述在FM模型中，每一个特征会对应一个隐变量，但在FFM模型中，认为应该将特征分为多个field，每个特征对应每个field分别有一个隐变量。   举个例子，我们的样本有3种类型的字段：publisher, advertiser, gender，分别可以代表媒体，广告主或者是具体">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fyccqhjk48j30e202o3yl.jpg">
 
 
 
@@ -303,7 +310,38 @@
       
 
       
-        <h2 id="《Field-aware-Factorization-Machines-for-CTR-Prediction》-2016"><a href="#《Field-aware-Factorization-Machines-for-CTR-Prediction》-2016" class="headerlink" title="《Field-aware Factorization Machines for CTR Prediction》,2016"></a>《Field-aware Factorization Machines for CTR Prediction》,2016</h2><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>1.在CTR预估上FFM性能超过了FM</p>
+        <h2 id="《Field-aware-Factorization-Machines-for-CTR-Prediction》-2016"><a href="#《Field-aware-Factorization-Machines-for-CTR-Prediction》-2016" class="headerlink" title="《Field-aware Factorization Machines for CTR Prediction》,2016"></a>《Field-aware Factorization Machines for CTR Prediction》,2016</h2><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在FM模型中，每一个特征会对应一个隐变量，但在FFM模型中，认为应该将特征分为多个field，每个特征对应每个field分别有一个隐变量。  </p>
+<p>举个例子，我们的样本有3种类型的字段：publisher, advertiser, gender，分别可以代表媒体，广告主或者是具体的商品，性别。其中publisher有5种数据，advertiser有10种数据，gender有男女2种，经过one-hot编码以后，每个样本有17个特征，其中只有3个特征非空。  </p>
+<p>如果使用FM模型，则17个特征，每个特征对应一个隐变量。<br>如果使用FFM模型，则17个特征，每个特征对应3个隐变量，即每个类型对应一个隐变量，具体而言，就是对应publisher, advertiser, gender三个field各有一个隐变量。</p>
+<p>本文的成果如下：  </p>
+<ul>
+<li><p>尽管FFM被证明是有效的，但这项工作可能是唯一一项将FFM应用于CTR预测问题的已发表的研究。 为了进一步证明FFM对CTR预测的有效性，我们提出使用FFM作为我们的主要模型，以赢得由Criteo和Avazu主办的两场全球CTR比赛。  </p>
+</li>
+<li><p>我们将FFM与两个相关模型Poly2和FM进行比较。我们首先在概念上讨论为什么FFM可能比它们更好，并进行实验以查看准确性和训练时间方面的差异。  </p>
+</li>
+<li><p>我们提出了训练FFM的技术。它们包括用于FFM的有效并行优化算法以及使用早停以避免过拟合。  </p>
+</li>
+<li><p>为了使FFM可供公众使用，我们发布了一个开源软件。  </p>
+</li>
+</ul>
+<h3 id="PLOY2和FM"><a href="#PLOY2和FM" class="headerlink" title="PLOY2和FM"></a>PLOY2和FM</h3><p>2次多项式映射通常可以有效地捕获特征交互的信息。此外，他们表明，通过在2维映射的显式形式上应用线性模型，训练和测试时间可以比使用核方法快得多。这种方法称为Poly2，可以学习每个特征对的权重： </p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fyccqhjk48j30e202o3yl.jpg" alt=""></h1><p>其中h（j 1，j 2）是将j 1和j 2编码为自然数的函数。计算的复杂度是O（n_mean^2），其中，n_mean是每个实例的非零元素的平均数。  </p>
+<p>之前提出的FM隐含地为每个特征学习隐向量。每个隐在向量包含k个隐因子，其中k是用户指定的参数。然后，特征交互的效果由两个隐向量的内积建模：</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fyccr4ugzxj30ec02qglo.jpg" alt=""></h1><p>变量的数量是n×k，因此直接计算花费O（n_mean^2 k）时间。化简后为O（n_mean k）。<br>当数据集稀疏时FM可能比Poly2更好。请注意，在Poly2中，实现h（j 1，j 2）的简单方法是将每对特征视为一个新特征。这种方法需要与O（n^2）一样大的模型，由于n非常大，这对于CTR预测通常是不切实际的。<br>在本文中，为了简化公式，我们不包括线性项和偏差项。  </p>
+<h3 id="FFM"><a href="#FFM" class="headerlink" title="FFM"></a>FFM</h3><p>FFM的想法源于PITF，该推荐用于具有个性化标签的推荐系统。在PITF中，他们假设三个可用的字段，包括用户，项目和标签，并在单独的潜在空间中分解（用户，项目），（用户，标签）和（项目，标签）。FFM是使用此信息的FM的变体。为了解释FFM如何工作，我们考虑以下新示例：  </p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fyccs6z2vgj30iw02idg0.jpg" alt=""></h1><p>回想一下FM，φFM（w，x）是</p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fyccsimdy2j30fk00ygll.jpg" alt=""></h1><p>在FM中，每个特征只有一个隐向量来学习具有任何其他特征的潜在影响。 以ESPN为例，ESPN用于学习Nike（w ESPN·w Nike）和Male（w ESPN·w Male）的潜在影响。 然而，由于Nike和Male属于不同的领域，（EPSN，Nike）和（EPSN，Male）的潜在影响可能不同。<br>在FFM中，每个特征都有几个隐向量。根据其他功能的领域，其中一个用于内积。 在我们的例子中，φFFM（w，x）是  </p>
+<p>w ESPN,A · w Nike,P + w ESPN,G · w Male,P + w Nike,G · w Male,A  </p>
+<p>我们看到要学习（ESPN，NIKE），ESPN，A的潜在效果，因为Nike属于现场广告，因为ESPN属于现场发行人，所以使用了Nike，P. 再次，为了学习（EPSN，男性），ESPN的潜在影响，使用G是因为男性属于性别性别，并且因为ESPN属于现场出版商而使用了男性，P。在数学上，FFM：</p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fycctcry83j30g80323ym.jpg" alt=""></h1><p>其中f 1和f 2分别是j 1和j 2的字段。 如果f是字段数，那么FFM的变量数是nfk，而计算（4）的复杂度是O（n_mean^2 k）。 值得注意的是，在FFM中，因为每个潜在的向量只需要通过一个特定的领域来学习效果，通常     k_FFM &lt;&lt; k_FM .</p>
+<h3 id="解决优化问题"><a href="#解决优化问题" class="headerlink" title="解决优化问题"></a>解决优化问题</h3><p>除了用φFFM（w，x）代替φLM（w，x）之外，优化问题与（1）相同。最近，已经提出了一些自适应学习速率调度表，以促进SGD的训练过程。 我们使用AdaGrad ，因为已经证明了它对矩阵因子化的有效性，这是FFM的一个特例。训练过程如下所示：</p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fyccuxy5pyj30ja0bkmyy.jpg" alt=""></h1><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在本文中，讨论了FFM的有效实现。我们证明，对于某些类型的数据集，FFM在logloss方面优于三个着名的LM，Poly2和FM模型，但训练时间较长。</p>
+<h2 id="个人体会"><a href="#个人体会" class="headerlink" title="个人体会"></a>个人体会</h2><p>在FM模型中，每一个特征会对应一个隐变量，但在FFM模型中，认为应该将特征分为多个field，每个特征对应每个field分别有一个隐变量。举个例子，我们的样本有3种类型的字段：publisher, advertiser, gender，分别可以代表媒体，广告主或者是具体的商品，性别。其中publisher有5种数据，advertiser有10种数据，gender有男女2种，经过one-hot编码以后，每个样本有17个特征，其中只有3个特征非空。如果使用FM模型，则17个特征，每个特征对应一个隐变量。如果使用FFM模型，则17个特征，每个特征对应3个隐变量，即每个类型对应一个隐变量，具体而言，就是对应publisher, advertiser, gender三个field各有一个隐变量。  </p>
+<p>在FFM的训练过程中，有许多细节要注意。  </p>
+<p>第一，样本归一化。FFM默认是进行样本数据的归一化，否则很容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。 </p>
+<p>第二，特征归一化。CTR/CVR模型采用了多种类型的源特征，包括数值型和categorical类型等。但是，categorical类编码后的特征取值只有0或1，较大的数值型特征会造成样本归一化后categorical类生成特征的值非常小，没有区分性。例如，一条用户-商品记录，用户为“男”性，商品的销量是5000个（假设其它特征的值为零），那么归一化后特征“sex=male”（性别为男）的值略小于0.0002，而“volume”（销量）的值近似为1。特征“sex=male”在这个样本中的作用几乎可以忽略不计，这是相当不合理的。因此，将源数值型特征的值归一化到 [0,1][0,1] 是非常必要的。  </p>
+<p>第三，省略零值特征。从FFM模型的表达式可以看出，零值特征对模型完全没有贡献。包含零值特征的一次项和组合项均为零，对于训练模型参数或者目标值预估是没有作用的。因此，可以省去零值特征，提高FFM模型训练和预测的速度，这也是稀疏样本采用FFM的显著优势。</p>
+<p>参考链接：<br><a href="https://blog.csdn.net/jediael_lu/article/details/77772565#21-%E8%83%8C%E6%99%AF%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86" target="_blank" rel="noopener">https://blog.csdn.net/jediael_lu/article/details/77772565#21-%E8%83%8C%E6%99%AF%E5%8F%8A%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86</a></p>
 
       
     </div>
@@ -494,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《Field-aware-Factorization-Machines-for-CTR-Prediction》-2016"><span class="nav-number">1.</span> <span class="nav-text">《Field-aware Factorization Machines for CTR Prediction》,2016</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">2.</span> <span class="nav-text">摘要</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#《Field-aware-Factorization-Machines-for-CTR-Prediction》-2016"><span class="nav-number">1.</span> <span class="nav-text">《Field-aware Factorization Machines for CTR Prediction》,2016</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PLOY2和FM"><span class="nav-number">2.1.</span> <span class="nav-text">PLOY2和FM</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FFM"><span class="nav-number">0.1.</span> <span class="nav-text">FFM</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决优化问题"><span class="nav-number">0.1.</span> <span class="nav-text">解决优化问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">1.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人体会"><span class="nav-number">2.</span> <span class="nav-text">个人体会</span></a></li></ol></div>
             
 
           </div>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87-FFM/</loc>
+    
+    <lastmod>2018-12-19T13:04:23.300Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/%E8%AF%BB%E3%80%8A%E8%A7%A3%E6%9E%90%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E3%80%8B/</loc>
     
     <lastmod>2018-12-17T10:16:03.124Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87-Factorization-Machines/</loc>
     
     <lastmod>2018-11-03T15:12:21.209Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87-FFM/</loc>
-    
-    <lastmod>2018-10-18T14:42:55.839Z</lastmod>
     
   </url>
   

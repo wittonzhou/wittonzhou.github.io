@@ -304,9 +304,49 @@
       
         
           
-            <h2 id="自适应学习率算法"><a href="#自适应学习率算法" class="headerlink" title="自适应学习率算法"></a>自适应学习率算法</h2><p>损失通常高度敏感于参数空间中的某些方向，而不敏感于其他。动量算法可以在一定程度上缓解这个问题，但这样做的代价是引入了另一个超参数。  </p>
-<h3 id="AdaGrad"><a href="#AdaGrad" class="headerlink" title="AdaGrad"></a>AdaGrad</h3><p>独立地适应所有模型参数的学习率，缩放每个参数反比与其他所有梯度历史平方值总和的平方根。具有损失最大偏导的参数相应地有一个快速下降的学习率，而具有小偏导的参数在学习率上有相对较小的下降。净效果是，在参数空间中更为平缓的倾斜方向会取得更大的进步。  </p>
-<h3 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h3><h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3>
+            <h3 id="梯度下降法的问题"><a href="#梯度下降法的问题" class="headerlink" title="梯度下降法的问题"></a>梯度下降法的问题</h3><p>学习率设定：学习率的设定带来的挑战有三方面。  </p>
+<p>首先，选择一个合理的学习率很难，如果学习率过小，则会导致收敛速度慢。如果学习率过大，会阻碍收敛，即出现在极值点附近振荡的现象。  </p>
+<p>其次，学习率调整很难，我们一般使用某种事先设定的策略或者在每次迭代中衰减一个较小的阈值。无论哪种调整方法，都需要事先进行固定设置，这边便无法自适应每次学习的数据集特点。  </p>
+<p>最后，模型所有的参数每次更新都是使用相同的学习速率。如果数据特征是稀疏的或者每个特征有着不同的取值统计特征与空间，那么便不能在每次更新中每个参数使用相同的学习速率，那些很少出现的特征应该使用一个相对较大的学习速率。</p>
+<p>另外，对于非凸目标函数，容易陷入局部极值点或鞍点之中。</p>
+<h3 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h3><p>SGD方法的一个缺点是其更新方向完全依赖于当前batch计算出的梯度，因而十分不稳定。Momentum算法借用了物理中的动量概念，它模拟的是物体运动时的惯性，即更新的时候在一定程度上保留之前更新的方向，同时利用当前batch的梯度微调最终的更新方向。这样一来，可以在一定程度上增加稳定性，从而学习地更快，并且还有一定摆脱局部最优的能力。</p>
+<p>优点：  </p>
+<ul>
+<li>对方向一致的参数能够加速学习，对梯度改变方向的参数能够减少其更新，因此，momentum能够在相关方向上加速学习，抑制振荡，从而加速收敛。  </li>
+</ul>
+<p>缺点：  </p>
+<ul>
+<li>较好的学习率难以获得。</li>
+</ul>
+<h2 id="自适应学习率算法"><a href="#自适应学习率算法" class="headerlink" title="自适应学习率算法"></a>自适应学习率算法</h2><p>损失通常高度敏感于参数空间中的某些方向，而不敏感于其他。动量算法可以在一定程度上缓解这个问题，但这样做的代价是引入了另一个超参数。  </p>
+<h3 id="AdaGrad"><a href="#AdaGrad" class="headerlink" title="AdaGrad"></a>AdaGrad</h3><p>独立地适应所有模型参数的学习率，缩放每个参数反比与其所有梯度历史平方值总和的平方根。Adagrad算法能够在训练中自动的对learning rate进行调整，对于出现频率较低参数采用较大的α更新；相反，对于出现频率较高的参数采用较小的α更新。因此，Adagrad非常适合处理稀疏数据。 </p>
+<p>优点：  </p>
+<ul>
+<li>它能够为每个参数自适应不同的学习速率，而一般的人工都是设定为0.01。 </li>
+</ul>
+<p>缺点：  </p>
+<ul>
+<li><p>在于需要计算参数梯度序列平方和，并且学习速率趋势是不断衰减最终达到一个非常小的值。即，在训练的中后期，分母上梯度平方的累加将会越来越大，从而梯度趋近于0，使得训练提前结束。  </p>
+</li>
+<li><p>依赖一个全局学习率。</p>
+</li>
+</ul>
+<h3 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h3><p>Adagrad会累加之前所有的梯度平方，而RMSprop仅仅是计算对应的平均值，具体来说，是使用指数加权平均来代替历史梯度的平方和，因此可缓解Adagrad算法学习率下降较快的问题。</p>
+<p>优点：  </p>
+<ul>
+<li>RMSprop改进了Adagrad学习速率衰减过快的问题，同时其适用于处理非平稳。</li>
+</ul>
+<p>缺点：  </p>
+<ul>
+<li>依然依赖一个全局学习率。</li>
+</ul>
+<h3 id="Adam"><a href="#Adam" class="headerlink" title="Adam"></a>Adam</h3><p>Adam(Adaptive Moment Estimation)是另一种自适应学习率的方法。它利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。Adam的优点主要在于经过偏置校正后，每一次迭代学习率都有个确定范围，使得参数比较平稳。</p>
+<p>优点：  </p>
+<ul>
+<li>Adam 算法结合了 Momentum 和 RMSprop 梯度下降法，并且是一种极其常用的学习算法，被证明能有效适用于不同神经网络，适用于广泛的结构。</li>
+<li>结合了Adagrad善于处理稀疏梯度和RMSprop善于处理非平稳目标的优点。</li>
+</ul>
+
           
         
       
@@ -1856,7 +1896,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -233,125 +233,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/new-test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Witton Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WittonZhou">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/new-test/" itemprop="url">new_test</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-09T13:02:30+08:00">
-                2019-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id=""><a href="#" class="headerlink" title=""></a><img src="new-test/1.png" alt="是的"></h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/优化算法总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -589,31 +470,31 @@
 <p>对于工业环境中的大规模在线推荐和排名系统，诸如逻辑回归的广义线性模型被广泛使用，因为它们是简单的，可扩展性好和可解释性强。模型通常使用独热编码训练二值化稀疏特征。例如，如果用户安装了Netflix，则二进制特征“user_installed_app=netflix”的值为1。记忆可以通过稀疏特征进行交叉乘积（叉乘，也叫做外积或向量积）转换获得，例如AND（user_installed_app = netflix，impression_app = pandora），当用户安装了Netflix并且之后展示在Pandora上，那么得到特征的值为1，其余为0。这个交叉特征就展示了特征对之间的相关性和目标label之间的关联。泛化可以通过增加一些粗粒度的特征实现，（例如AND（user_installed_category = video，impression_category = music）），但通常需要手动进行特征工程。交叉积转换的一个限制是它们不能生成未出现在训练数据中的query-item特征对。这里主要是对接下来线性模型需要的特征做了下解释，一个是one-hot，比较稀疏。一个是交叉特征，就是特征之间做笛卡尔积，用于线性模型去寻找显性的非线性。  </p>
 <p>基于embedding的模型，例如FM或DNN，可以通过为每个query和item学习出一个低维稠密嵌入向量，来推广到先前未见过的query-item特征对，这显然减少特征工程的负担。然而，当潜在的query-item矩阵稀疏且高秩时，例如具有特定偏好的用户或很少出现的小众items，很难学习query和item的有效低维表示。在这种情况下，大多数query-item对之间不存在交互，但是稠密嵌入将导致对所有query-item对的非零预测，因此可能过度泛化并且推荐不太相关的内容。另一方面，利用交叉积特征的线性模型能用很少的参数记住那些‘exception_rules’。embedding特征，也就是把稀疏数据映射到稠密的低维数据。   </p>
 <p>文章中提出了Wide&amp;Deep学习框架，通过联合训练线性模型部分和NN部分，在一个模型中实现记忆和泛化。Wide&amp;Deep模型的结构图如下所示。  </p>
-<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxqzmwcdg9j31340a441m.jpg" alt=""></h1><p>Wide&amp;Deep学习框架，用于联合训练具有嵌入的前馈神经网络和具有特征变换的线性模型，可以用于具有稀疏输入的通用推荐系统。</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="读论文-《Wide-Deep》/结构图.png" alt=""></h1><p>Wide&amp;Deep学习框架，用于联合训练具有嵌入的前馈神经网络和具有特征变换的线性模型，可以用于具有稀疏输入的通用推荐系统。</p>
 <h3 id="推荐系统概述"><a href="#推荐系统概述" class="headerlink" title="推荐系统概述"></a>推荐系统概述</h3><p>App的推荐系统如下图所示。当用户访问应用商店时，会生成一个query，其中包括各种用户和上下文功能。推荐系统返回App列表（也称为印象），用户可以在其上执行某些操作，例如点击或购买。这些用户操作以及查询和印象记录在日志中，作为学习器的训练数据。  </p>
 <p>由于数据库中有过百万的应用程序，因此对全部app计算score不合理。因此，收到一个query的第一步是检索。检索系统返回一个items的短列表，通常是机器学习模型和人为定义规则的组合。在减少候选池之后，排序系统按照他们的score对所有项目进行排名。分数通常为P（y | x），给定特征x的用户行为y的概率，包括用户特征（例如，国家，语言，人口统计），上下文特征（例如，设备，一天中的小时，day of the week）和印象特征（例如，应用年龄，应用的历史统计数据）。在本文中，重点为使用Wide＆Deep学习框架的排序模型上。  </p>
-<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxqzw1t8z5j30i20a6myf.jpg" alt=""></h1><h3 id="Wide-amp-Deep-Learning"><a href="#Wide-amp-Deep-Learning" class="headerlink" title="Wide&amp;Deep Learning"></a>Wide&amp;Deep Learning</h3><p>1.Wide部分  </p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="读论文-《Wide-Deep》/屏幕快照 2018-12-01 上午9.37.44.png" alt=""></h1><h3 id="Wide-amp-Deep-Learning"><a href="#Wide-amp-Deep-Learning" class="headerlink" title="Wide&amp;Deep Learning"></a>Wide&amp;Deep Learning</h3><p>1.Wide部分  </p>
 <p>Wide部分的形式是y = w T x + b的广义线性模型，y是预测，x=[x1,x2,x3…xd]是d维特征的向量，w=[w1,w2,w3…wd]是模型参数，b是偏置项。特征集合包括了原始的输入特征和转化后的特征。其中，最重要的转化就是交叉乘积转换，  </p>
-<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxr1wi7vecj30b202k74a.jpg" alt=""></h1><p>cki是一个boolean值变量，当第i个特征是第k个转换ϕk，否则的就是0。对于一个二进制特征，交叉积特征可以简单理解为AND(gender=female, language=en),当且仅当gender=female，language=en时，交叉特征为1，其他都为0。该方法能捕捉出特征间的交互，为模型添加非线性。</p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="读论文-《Wide-Deep》/屏幕快照 2018-12-01 上午10.47.24.png" alt=""></h1><p>cki是一个boolean值变量，当第i个特征是第k个转换ϕk，否则的就是0。对于一个二进制特征，交叉积特征可以简单理解为AND(gender=female, language=en),当且仅当gender=female，language=en时，交叉特征为1，其他都为0。该方法能捕捉出特征间的交互，为模型添加非线性。</p>
 <p>2.Deep部分  </p>
 <p>Deep模块则是一个前向神经网络，对于类别型特征，原始输入特征其原始输入都是字符串形式的特征，如“language=en”.我们把这些稀疏，高维的类别型特征转换为低维稠密的实值向量，这就是embedding向量。embedding随机初始化，并利用反向传播对其进行更新。将高维的特征换换为embedding特征后，这些低维的embedding向量就被feed到神经网络中，每个隐藏层做如下计算：  </p>
-<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxr2030gycj309201odfs.jpg" alt=""></h1><p>其中l是网络的层数，f是激活函数，一般用RELU，al,bl,Wl分别为第l层的激活函数，偏置项，模型权值。<br>也就是说输入的类别型特征是字符串，需要转化下，然后做embedding，模型是一个全连接。</p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="读论文-《Wide-Deep》/屏幕快照 2018-12-01 上午10.50.47.png" alt=""></h1><p>其中l是网络的层数，f是激活函数，一般用RELU，al,bl,Wl分别为第l层的激活函数，偏置项，模型权值。<br>也就是说输入的类别型特征是字符串，需要转化下，然后做embedding，模型是一个全连接。</p>
 <p>3.Joint Training of Wide&amp;Deep Model  </p>
 <p>通过将Wide部分和Deep部分的对数加权输出作为预测值，然后将其feed给一个常规的逻辑损失函数中，用于联合训练。需要注意的是，联合训练和ensemble是有区别的。在集成方法中，模型都是独立训练的，模型之间没有关系，他们的预测输出只在最后才合并。但是，联合训练的话，两个模型是一起训练所有参数。对于模型大小来说，集成方法，因为模型之间独立，所以单个模型的大小需要更大，即需要更多的特征和特征工程。以此起来获得合理的精度。但是联合训练，两个模块只要互相补充对方不足即可，可以同时优化模型的参数。在Wide&amp;Deep中，只需要两个模型，训练简单，可以很快的迭代模型。  </p>
 <p>Wide&amp;Deep模型的联合训练通过反向传播将输出值的误差梯度通过mini-batch随机梯度同时传送给Wide和Deep部分。在实验中，我们使用带L1的FTRL算法作为Wide模块的优化器，使用AdaGrad更新Deep模块。  </p>
 <p>对于逻辑回归问题，我们模型的预测是：  </p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxr23t4rd1j30fs01mjrf.jpg" alt=""></h1><p>其中Y是一个二值的类别标签，σ()是sigmoid函数，ϕ(x)表示交叉特征，b是一个bias项，Wwide是Wide模型的权值，Wdeep是应用在最后的隐藏层到输出上的权值。  </p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="读论文-《Wide-Deep》/屏幕快照 2018-12-01 上午10.54.15.png" alt=""></h1><p>其中Y是一个二值的类别标签，σ()是sigmoid函数，ϕ(x)表示交叉特征，b是一个bias项，Wwide是Wide模型的权值，Wdeep是应用在最后的隐藏层到输出上的权值。  </p>
 <h3 id="系统实现"><a href="#系统实现" class="headerlink" title="系统实现"></a>系统实现</h3><p>1.数据生成<br>在此阶段，一段时间内的用户和应用程序展示数据用于生成训练数据。标签是应用程序获取：如果安装了展示的应用程序，则为1，否则为0。  </p>
-<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxr1j1au6bj30iu0bkmz0.jpg" alt=""></h1><p>词汇表，即将分类要素字符串映射到整数ID的表，也在此阶段生成。系统会计算发生超过最少次数的所有字符串要素的ID空间。 通过将特征值x映射到其累积分布函数P（X≤x），将连续的实值特征归一化为[0,1]，将其分成n_q个分位数。对于第i个分位数中的值，归一化值是(i-1)/(n_q-1)。 在数据生成阶段计算分位数边界。  </p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="读论文-《Wide-Deep》/屏幕快照 2018-12-01 上午10.34.19.png" alt=""></h1><p>词汇表，即将分类要素字符串映射到整数ID的表，也在此阶段生成。系统会计算发生超过最少次数的所有字符串要素的ID空间。 通过将特征值x映射到其累积分布函数P（X≤x），将连续的实值特征归一化为[0,1]，将其分成n_q个分位数。对于第i个分位数中的值，归一化值是(i-1)/(n_q-1)。 在数据生成阶段计算分位数边界。  </p>
 <p>2.模型训练<br>我们在实验中使用的模型结构如下图所示。在训练期间，我们的输入层接收训练数据和词汇表，并生成稀疏和稠密的特征以及标签。Wide部分包括用户安装的应用和展示应用的交叉乘积。对于模型的Deep部分，为每个分类特征学习32维嵌入向量。我们将所有嵌入与密集特征连接在一起，产生大约1200维的稠密向量。然后将连接的向量输入3个ReLU层，最后输入logistic output单元。  </p>
-<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxr1l4atnsj30i60920tm.jpg" alt=""></h1><p>Wide＆Deep模型已接受超过5000亿条数据的训练。每当一组新的训练数据到达时，该模型需要重新训练。然而，每次从头开始重新训练都是计算上昂贵的，并且延迟了从数据到达到服务更新模型的时间。为了应对这一挑战，我们实施了一个热启动系统，该系统使用先前模型中的嵌入和线性模型权重初始化新模型。  </p>
+<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="读论文-《Wide-Deep》/屏幕快照 2018-12-01 上午10.36.02.png" alt=""></h1><p>Wide＆Deep模型已接受超过5000亿条数据的训练。每当一组新的训练数据到达时，该模型需要重新训练。然而，每次从头开始重新训练都是计算上昂贵的，并且延迟了从数据到达到服务更新模型的时间。为了应对这一挑战，我们实施了一个热启动系统，该系统使用先前模型中的嵌入和线性模型权重初始化新模型。  </p>
 <p>在将模型加载到模型服务器之前，完成模型的干运行以确保它不会导致提供实时交易的问题。我们根据先前的模型验证模型质量作为健全性检查。</p>
 <p>3.模型服务<br>模型经过训练和验证后，我们将其加载到模型服务器中。对于每个query，服务器从应用程序检索系统接收一组应用程序候选者，并接收用户特征来为每个应用程序评分。然后，应用程序从最高分数到最低分数排名，我们按此顺序向用户显示应用程序。通过在Wide＆Deep模型上运行前向推理传递来计算得分。  </p>
 <p>为了按10毫秒的顺序提供每个请求，我们通过并行运行较小批量使用多线程并行性来优化性能，而不是在单个批量推理步骤中对所有候选应用程序进行评分。  </p>
 <h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>为了评估Wide&amp;Deep学习在现实世界推荐系统中的有效性，我们进行了实时实验，并在几个方面评估了系统：应用程序获取和服务性能。  </p>
 <p>我们在A/B测试框架中进行了3周的实时在线实验。对于对照组，1％的用户被随机选择并呈现由先前版本的排名模型生成的推荐，这是一种高度优化的wide-only逻辑回归模型，具有丰富的交叉积转换。对于实验组，1％的用户会收到由Wide＆Deep模型生成的建议，并使用相同的特征集进行训练。如表1所示，Wide＆Deep模型相对于对照组（统计显着性）将应用商店主登陆页面上的应用获取率提高了3.9％。结果也与另一个1％组进行比较，仅使用具有相同特征和神经网络结构的模型的Deep部分，Wide&amp;Deep在深度模型之上具有+1％的增益。</p>
 <p>除了在线实验，还比较了AUC on holdout set。虽然Wide＆Deep的AUC略高，但是Wide&amp;Deep模型对在线交易比线下实验的影响更为明显。一个可能的原因是，固定数据集中的印象和标签是固定的，而在线系统可以通过将泛化与记忆相结合来产生新的探索性建议，并从新的用户响应中学习。  </p>
-<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxr28j3hdvj30iq06ujs8.jpg" alt=""></h1><h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p>将宽线性模型与交叉乘积变换和深层神经网络与密集嵌入相结合的想法受到以前的工作的启发，例如FM，它通过将两个变量之间的相互作用分解为两个低维嵌入向量之间点积（也就是内积）来增加线性模型的推广。在本文中，我们通过神经网络而不是点积来学习嵌入之间的高度非线性交互来扩展模型容量。  </p>
+<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="读论文-《Wide-Deep》/屏幕快照 2018-12-01 上午10.58.41.png" alt=""></h1><h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p>将宽线性模型与交叉乘积变换和深层神经网络与密集嵌入相结合的想法受到以前的工作的启发，例如FM，它通过将两个变量之间的相互作用分解为两个低维嵌入向量之间点积（也就是内积）来增加线性模型的推广。在本文中，我们通过神经网络而不是点积来学习嵌入之间的高度非线性交互来扩展模型容量。  </p>
 <p>在语言模型中，已提出联合训练循环神经网络（RNN）和具有n-gram特征的最大熵模型，通过学习输入和输出之间的直接权重来显着降低RNN复杂度（例如，隐藏层大小）。在计算机视觉中，深度残差学习已被用于减少训练更深层模型的难度，并通过跳过一个或多个层的快捷连接来提高准确性。神经网络与图形模型的联合训练也已应用于图像中的人体姿态估计。在这项工作中，我们探索了前馈神经网络和线性模型的联合训练，稀疏特征和输出单元之间的直接连接，用于稀疏输入数据的通用推荐和排序问题。  </p>
 <h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>记忆和泛化对于推荐系统都很重要。宽线性模型可以使用叉乘特征变换有效地记忆稀疏特征交互，而深度神经网络可以通过低维嵌入推广到先前未见过的特征交互。我们介绍了Wide＆Deep学习框架，以结合两种模型的优势。我们在Google Play的推荐系统上制作并评估了该框架，在线实验结果表明，Wide＆Deep模型在广泛和深度模型上的应用程序获取方面取得了显着的进步。  </p>
 <h3 id="个人体会"><a href="#个人体会" class="headerlink" title="个人体会"></a>个人体会</h3><p>本文中，Google公司为推荐系统和CTR预测提出了Wide&amp;Deep模型，并在Github上进行了开源。  </p>
@@ -1252,7 +1133,7 @@
 <p>1.4 激活函数<br>激活函数的引入为的是增加整个网络的表达能力（即非线性）。<br>Sigmoid型函数将输出响应的值域被压缩到[0,1]之间，0对应了生物神经元的“抑制状态”，1则对应了“兴奋状态”。Sigmoid有一个严重的问题，即梯度的“饱和效应”。在输出值接近1时，梯度接近0，这会导致在误差反向传播过程中导数处于该区域的误差将很难甚至根本无法传递到前层，进而导致整个网络无法训练。<br>ReLU函数是目前深度卷积神经网络中最为常用的激活函数之一。ReLU函数的梯度在x&gt;=0时为1，反之为0。对x&gt;=0部分完全消除了Sigmoid型函数的梯度饱和效应。ReLU函数还有助于随机梯度下降方法收敛，收敛速度约快6倍左右。  </p>
 <p>1.5 全连接层<br>全连接层起到将学到的特征表示映射到样本的标记空间的作用。  </p>
 <p>1.6 目标函数<br>目标函数的作用是用来衡量该预测值与真实样本标记之间的误差。  </p>
-<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx6t3lctu4j30ib08i75g.jpg" alt=""></h1><h3 id="2-CNN经典结构"><a href="#2-CNN经典结构" class="headerlink" title="2.CNN经典结构"></a>2.CNN经典结构</h3><ol>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="读《解析卷积神经网络》/卷积神经网络基本流程图.png" alt=""></h1><h3 id="2-CNN经典结构"><a href="#2-CNN经典结构" class="headerlink" title="2.CNN经典结构"></a>2.CNN经典结构</h3><ol>
 <li><p>感受野<br>随着网络深度的加深，后层神经元在第一层输入层的感受野会随之增大。也就是说，小卷积核通过多层叠加可取得与大卷积核同等规模的感受野。<br>小卷积核的优势：<br>（1）由于小卷积核需要多层叠加，加深了网络深度进而增强了网络容量<br>（2）增强网络容量的同时减少了参数个数  </p>
 </li>
 <li><p>残差网络模型<br>神经网络的深度和宽度是表征网络复杂度的两个核心因素，不过深度相比宽度在增加网络的复杂度方面更有效。然而，随着深度的增加，训练会变得愈加困难。这主要因为在基于随机梯度下降的网络训练过程中，误差信号的多层反向传播非常容易引发梯度“弥散”或者“爆炸”。一些特殊的权重初始化策略和批规范化（batch normalization）可以使这个问题得到极大的改善，但是效果有限。<br>当深度网络收敛时，另外的问题又随之而来：随着继续增加网络的深度，训练数据的训练误差没有降低反而升高。残差网络很好的解决了这个问题。  </p>
@@ -1296,21 +1177,21 @@
 </li>
 </ol>
 <h3 id="7-激活函数"><a href="#7-激活函数" class="headerlink" title="7.激活函数"></a>7.激活函数</h3><p>激活函数又称为“非线性映射函数”。以下将介绍七种当下深度卷积神经网络中常用的激活函数：<br>1.Sigmoid型函数  </p>
-<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx7t2guz5aj305n020dfp.jpg" alt=""></h1><p>Sigmoid型函数值域的均值并非为0而是全为正，这样的结果实际上并不符合我们队神经网络内数值的期望（均值）应为0的设想。</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="读《解析卷积神经网络》/sigmoid.png" alt=""></h1><p>Sigmoid型函数值域的均值并非为0而是全为正，这样的结果实际上并不符合我们队神经网络内数值的期望（均值）应为0的设想。</p>
 <p>2.tanh(x)型函数  </p>
-<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx7t5zyx93j305o0180sk.jpg" alt=""></h1><p>tanh(x)型函数是在Sigmoid型函数基础上为解决均值问题提出的激活函数。tanh(x)型函数又称作双曲正切函数，其函数范围是(-1,+1)，输出响应的均值为0。但是tanh(x)型函数仍基于Sigmoid型函数，依然会发生“梯度饱和”现象。  </p>
+<h1 id="png"><a href="#png" class="headerlink" title=".png)"></a><img src="读《解析卷积神经网络》/tanh(x" alt="">.png)</h1><p>tanh(x)型函数是在Sigmoid型函数基础上为解决均值问题提出的激活函数。tanh(x)型函数又称作双曲正切函数，其函数范围是(-1,+1)，输出响应的均值为0。但是tanh(x)型函数仍基于Sigmoid型函数，依然会发生“梯度饱和”现象。  </p>
 <p>3.修正线性单元(ReLU)  </p>
-<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx7ta4gvxlj307e043t8t.jpg" alt=""></h1><p>ReLU函数是目前深度卷积神经网络中最为常用的激活函数之一。<br>对 x ≥ 0 部分完全消除了Sigmoid型函数的梯度饱和效应。但是也存在缺陷，即在 x &lt; 0 时，梯度便为0。对于小于0的这部分卷积结果响应，它们一旦变为负值将再无法影响网络训练——这种现象被称作“死区”。  </p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="读《解析卷积神经网络》/ReLU.png" alt=""></h1><p>ReLU函数是目前深度卷积神经网络中最为常用的激活函数之一。<br>对 x ≥ 0 部分完全消除了Sigmoid型函数的梯度饱和效应。但是也存在缺陷，即在 x &lt; 0 时，梯度便为0。对于小于0的这部分卷积结果响应，它们一旦变为负值将再无法影响网络训练——这种现象被称作“死区”。  </p>
 <p>4.Leaky ReLU<br>为了缓解“死区”现象，研究者将ReLU函数中 x &lt; 0 的部分调整为 f(x) = α·x， 其中 α 为 0.01或0.001数量级的较小正数。  </p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx7teiy3kkj309f02mmx5.jpg" alt=""></h1><p>原始的ReLU函数实际上是Leaky ReLU函数的一个特例。不过由于Leaky ReLU中 α 为超参数，合适的值较难设定且较为敏感，因此Leaky ReLU函数在实际使用中的性能并不十分稳定。  </p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="读《解析卷积神经网络》/Leaky ReLU.png" alt=""></h1><p>原始的ReLU函数实际上是Leaky ReLU函数的一个特例。不过由于Leaky ReLU中 α 为超参数，合适的值较难设定且较为敏感，因此Leaky ReLU函数在实际使用中的性能并不十分稳定。  </p>
 <p>5.参数化ReLU<br>参数化ReLU的提出很好的解决了Leaky ReLU中超参数 α 不易设定的问题：参数化ReLU直接将 α 也作为一个网络中可学习的变量融入模型的整体训练过程。<br>参数化ReLU在带来更大自由度的同时，也增加了网络模型过拟合的风险，在实际使用中需格外注意。  </p>
 <p>6.随机化ReLU<br>另一种解决 α 超参设定的方式是将其随机化，这便是随机化ReLU。  </p>
 <p>7.指数化线性单元(ELU)  </p>
-<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx7tx5yqr0j30af02q3yj.jpg" alt=""></h1><p>ELU具备ReLU函数的优点， 同时ELU也解决了ReLU函数自身的“死区”问题。不过，ELU函数中的指数操作稍稍增大了计算量。实际使用中，ELU中的超参数 λ 一般设置为1。  </p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="读《解析卷积神经网络》/ELU.png" alt=""></h1><p>ELU具备ReLU函数的优点， 同时ELU也解决了ReLU函数自身的“死区”问题。不过，ELU函数中的指数操作稍稍增大了计算量。实际使用中，ELU中的超参数 λ 一般设置为1。  </p>
 <h3 id="8-目标函数"><a href="#8-目标函数" class="headerlink" title="8.目标函数"></a>8.目标函数</h3><ol>
-<li><p>交叉熵损失函数<br> 又称为Softmax损失函数，是目前卷积神经网络中最常用的分类目标函数，通过指数化变换使网络输出h转换为概率形式。<br> <img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx7vtk2g21j30ey01zwei.jpg" alt="">  </p>
+<li><p>交叉熵损失函数<br> 又称为Softmax损失函数，是目前卷积神经网络中最常用的分类目标函数，通过指数化变换使网络输出h转换为概率形式。<br> <img src="读《解析卷积神经网络》/交叉熵损失函数.png" alt="">  </p>
 </li>
-<li><p>合页损失函数<br> 在SVM中被广泛使用。<br> <img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx7vw3iuosj3092021mx4.jpg" alt=""><br> 一般情况的分类任务中，交叉熵损失函数的分类效果略优于合页损失函数的分类效果。  </p>
+<li><p>合页损失函数<br> 在SVM中被广泛使用。<br> <img src="读《解析卷积神经网络》/合页损失函数.png" alt=""><br> 一般情况的分类任务中，交叉熵损失函数的分类效果略优于合页损失函数的分类效果。  </p>
 </li>
 <li><p>坡道损失函数  </p>
 </li>
@@ -1324,7 +1205,7 @@
 <p>3.最大范数约束<br>最大范数约束是通过向参数量级的范数设置上限对网络进行正则化的手段。  </p>
 <p>4.dropout(随机失活)<br>随机失活的提出正是一定程度上缓解了神经元之间复杂的协同适应，降低了神经元间依赖，避免了网络过拟合的发生。其原理非常简单：对于某层的每个神经元，在训练阶段均以概率 p 随机将该神经元权重置0（故被称作“随机失活”），测试阶段所有神经元均呈激活态，但其权重需乘 (1 − p) 以保证训练和测试阶段各自权重拥有相同的期望。  </p>
 <p>由于失活的神经元无法参与到网络训练，因此每次训练（前向操作和反向操作）时相当于面对一个全新网络。以含两层网络、各层有三个神经元的简单神经网络为例，若每层随机失活一个神经元，该网络共可产生9种子网络。根据上述随机失活原理，训练阶段相当于共训练了9个子网络，测试阶段则相当于9个子网络的平均集成。  </p>
-<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx7u98eam8j30h00bj406.jpg" alt=""></h1><p>5.验证集的使用<br>借助验证集对网络训练“早停”是一种有效的防止网络过拟合方法。</p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="读《解析卷积神经网络》/屏幕快照 2018-11-14 下午7.57.09.png" alt=""></h1><p>5.验证集的使用<br>借助验证集对网络训练“早停”是一种有效的防止网络过拟合方法。</p>
 <h3 id="10-超参数设定和网络训练"><a href="#10-超参数设定和网络训练" class="headerlink" title="10.超参数设定和网络训练"></a>10.超参数设定和网络训练</h3><ol>
 <li><p>输入数据像素大小<br> 统一将图像压缩到2^n大小，便于GPU设备并行。  </p>
 </li>
@@ -1337,7 +1218,7 @@
 <ol>
 <li>训练数据随机打乱<br> 在训练卷积神经网络时，尽管训练数据固定，但由于采用了随机批处理（mini-batch）的训练机制，因此我们可在模型每轮（epoch）训练进行前将训练数据集随机打乱（shuffle），确保模型不同轮数相同批次“看到”的数据是不同的。  </li>
 <li>学习率的设定<br> （1）模型训练开始时的初始学习率不宜过大，以0.01和0.001为宜<br> （2）模型训练过程中，学习率应随轮数增加而减缓。也可以分为，轮数减缓、指数减缓、分数减缓。  </li>
-<li><p>批规范操作（BN）<br> 在模型每次随机梯度下降训练时，通过mini-batch来对相应的网络响应做规范化操作，使得结果（输出信号各个维度）的均值为0，方差为1。算法如下：<br>  <img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx7v7i4ywgj30ix08uwg0.jpg" alt="">  </p>
+<li><p>批规范操作（BN）<br> 在模型每次随机梯度下降训练时，通过mini-batch来对相应的网络响应做规范化操作，使得结果（输出信号各个维度）的均值为0，方差为1。算法如下：<br>  <img src="读《解析卷积神经网络》/BN.png" alt="">  </p>
 <p> BN奏效的原因：在统计机器学习中的一个经典假设是“源空间和目标空间的数据分布是一致的”。如果不一致，那么就出现了新的机器学习问题，如迁移学习等。通过BN来规范化某些层或所有层的输入，从而可以固定每层输入信号的均值与方差。这样一来，即使网络模型较深层的响应或梯度很小，也可通过BM的规范化作用将其的尺度变大，以此便可解决深层网络训练很可能带来的“梯度弥散” 问题。  </p>
 </li>
 <li>网络模型优化算法选择<br> （1）随机梯度下降法。经典的随机梯度下降是最常见的神经网络优化方法，收敛效果较稳定，不过收敛速度过慢。<br> （2）基于动量的随机梯度下降法。<br> （3）Nesterov型动量随机下降法。<br> （4）Adagrad法。<br> （5）Adadelta法。<br> （6）RMSProp法。<br> （7）Adam法。  </li>
@@ -1462,7 +1343,7 @@
       
         
           
-            <h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx2rhd966uj30ci0kuq3c.jpg" alt=""></h1>
+            <h1 id=""><a href="#" class="headerlink" title=""></a><img src="23岁，被谈及最多的问题是钱/一位乘客突然失去了梦想.jpg" alt=""></h1>
           
         
       
@@ -1779,6 +1660,135 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/读论文-Deep-Learning-based-Recommender-System-A-Survey-and-New/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Witton Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WittonZhou">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/读论文-Deep-Learning-based-Recommender-System-A-Survey-and-New/" itemprop="url">读论文: Deep Learning based Recommender System:A Survey and New</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-24T19:16:43+08:00">
+                2018-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Deep-Learning-based-Recommender-System-A-Survey-and-New-Perspectives-2017"><a href="#Deep-Learning-based-Recommender-System-A-Survey-and-New-Perspectives-2017" class="headerlink" title="Deep Learning based Recommender System:A Survey and New Perspectives, 2017"></a>Deep Learning based Recommender System:A Survey and New Perspectives, 2017</h1><p>RS作为一种克服信息过载的有效解决方案。<br>与传统推荐模型相比，深度学习提供了对用户需求，项目特征和它们之间历史交互的理解。</p>
+<p>文章全面回顾了基于DL的RS研究方法，提出了基于DL的推荐模型的分类法。</p>
+<p>DL能够有效地捕获非线性和非平凡的用户-项目关系。</p>
+<p>RS三种输出的分类：评分预测，top-n，分类</p>
+<p>推荐模型通常分类为三种：协同过滤，基于内容，混合推荐系统</p>
+<p>DL中的一些模型（能和RS结合的）：<br>MLP：多层感知器<br>AE：自动编码器<br>CNN：卷积神经网络<br>RNN：循环神经网络<br>DSSM：深层语义相似度模型<br>RBM：受限波兹曼机<br>NADE：神经自回归分布估计<br>GAN：生产对抗网络</p>
+<p>文章将深度学习的推荐模型分为两大类：使用单深度学习技术的模型和深度复合模型（涉及两种及更多深度学习技术的RS）</p>
+<p>深度学习技术决定了这些推荐模型的优势和应用场景。<br>MLP可以轻松地模拟用户和项目之间的非线性交互；<br>CNN能够从异构数据源（如文本和视觉信息）中提取本地和全局的表示；<br>RNN使推荐系统能够对评级数据的时间动态进行建模，并且对内容信息的顺序进行建模；<br>DSSM能够在用户和项目之间执行语义匹配。<br>。。。</p>
+<p>NCF（神经网络协同过滤）</p>
+<p>基于自动编码器的RS</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1829,7 +1839,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

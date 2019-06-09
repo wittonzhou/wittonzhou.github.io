@@ -626,25 +626,25 @@
 <p>虽然原则上FM可以模拟高阶特征交互，但实际上通常由于高复杂性而仅考虑2阶特征交互。</p>
 <p>现有模型偏向于低阶或高阶特征交互，或依赖于特征工程。在文章中，展示了可以推导出一种学习模型，该模型能够以端到端的方式学习所有的特征交互，除了原始特征之外没有任何特征工程。  </p>
 <p>DeepFM模拟了FM的低阶特征交互，还模拟了DNN的高阶特征交互。与Wide&amp;Deep不同，DeepFM没有进行任何特征工程。  </p>
-<h3 id="DeepFM-1"><a href="#DeepFM-1" class="headerlink" title="DeepFM"></a>DeepFM</h3><h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxdpgfj8cpj30g308576j.jpg" alt=""></h1><p>整个模型的输出：</p>
-<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxehz04dwuj30gl02wdg4.jpg" alt=""></h1><p>可知，是由FM部分的输出加上DNN部分的输出，然后再外套一个sigmoid函数。</p>
+<h3 id="DeepFM-1"><a href="#DeepFM-1" class="headerlink" title="DeepFM"></a>DeepFM</h3><h1 id=""><a href="#" class="headerlink" title=""></a><img src="读论文《DeepFM》/结构.png" alt=""></h1><p>整个模型的输出：</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="读论文《DeepFM》/屏幕快照 2018-11-20 下午2.11.03.png" alt=""></h1><p>可知，是由FM部分的输出加上DNN部分的输出，然后再外套一个sigmoid函数。</p>
 <p>FM部分</p>
-<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxdq9njzhkj30f608j0uh.jpg" alt=""></h1><p>处理特征之间的线性相互作用之外，FM模型成对（2阶）相互作用作为各个特征潜在向量的内积。在先前的方法中，仅当特征i和特征j都出现在同一数据记录中时，才能训练特征i和j的交互的参数。在FM中，它是通过它们的潜在向量Vi和Vj的内积来测量的。 由于这种灵活的设计，只要i（或j）出现在数据记录中，FM就可以训练潜在向量Vi（Vj）。  </p>
-<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxeizdpghaj30gg05ndgi.jpg" alt=""></h1><p>上式中，左边部分反映了1阶特征的重要性，右边部分反映了2阶特征交互的重要性。</p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="读论文《DeepFM》/FM部分.png" alt=""></h1><p>处理特征之间的线性相互作用之外，FM模型成对（2阶）相互作用作为各个特征潜在向量的内积。在先前的方法中，仅当特征i和特征j都出现在同一数据记录中时，才能训练特征i和j的交互的参数。在FM中，它是通过它们的潜在向量Vi和Vj的内积来测量的。 由于这种灵活的设计，只要i（或j）出现在数据记录中，FM就可以训练潜在向量Vi（Vj）。  </p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="读论文《DeepFM》/屏幕快照 2018-11-20 下午2.46.00.png" alt=""></h1><p>上式中，左边部分反映了1阶特征的重要性，右边部分反映了2阶特征交互的重要性。</p>
 <p>Deep部分</p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxdq8mo0pfj30f8099myy.jpg" alt=""></h1><p>Deep部分与其他神经网络相比，不同于图像和音频的密集的数据输入，CTR预测的输入是完全不同的，所以需要新的网络结构设计。具体而言，CTR预测的原始特征输入向量通常是高度稀疏的、超高维度的、类别值和连续值混合的、并且在field中分好组的。这表明嵌入层应该在进一步馈入第一个隐藏层之前将输入向量压缩为低维稠密向量。这里的输入向量是类别型特征经过独热编码的（如果是数值型特征则先离散化）。</p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="读论文《DeepFM》/dnn部分.png" alt=""></h1><p>Deep部分与其他神经网络相比，不同于图像和音频的密集的数据输入，CTR预测的输入是完全不同的，所以需要新的网络结构设计。具体而言，CTR预测的原始特征输入向量通常是高度稀疏的、超高维度的、类别值和连续值混合的、并且在field中分好组的。这表明嵌入层应该在进一步馈入第一个隐藏层之前将输入向量压缩为低维稠密向量。这里的输入向量是类别型特征经过独热编码的（如果是数值型特征则先离散化）。</p>
 <p>输入层到嵌入层的结构：</p>
-<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxechdxmenj30dt05k0tr.jpg" alt=""></h1><p>这种结构有两个好处：  </p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="读论文《DeepFM》/embedding.png" alt=""></h1><p>这种结构有两个好处：  </p>
 <p>（1）虽然input field vectors 可以是不同长度的，但是它们的嵌入是相同size 的,size = k<br>（2）FM中的隐向量V现在作为神经网络的权重，被用于将input field vectors压缩到embedding vectors  </p>
 <p>embedding层的输出是m个field对应的e向量，传入DNN，最后得到一个稠密实值向量，经过一个sigmoid函数得到预测的CTR。</p>
 <p>这样，我们不再需要通过FM进行预训练，而是以端到端的方式联合训练整个网络。嵌入层的输出表示为：</p>
-<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxej4oasemj30gd09nmyr.jpg" alt=""></h1><p>FM部分和Deep部分共享相同的特征嵌入，这带来了两点好处：<br>（1）它能从原始特征中学习到低阶和高阶的特征交互<br>（2）它不需要专业的特征工程，而在Wide&amp;Deep中是需要的  </p>
+<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="读论文《DeepFM》/屏幕快照 2018-11-20 下午2.51.11.png" alt=""></h1><p>FM部分和Deep部分共享相同的特征嵌入，这带来了两点好处：<br>（1）它能从原始特征中学习到低阶和高阶的特征交互<br>（2）它不需要专业的特征工程，而在Wide&amp;Deep中是需要的  </p>
 <h3 id="与其他模型比较"><a href="#与其他模型比较" class="headerlink" title="与其他模型比较"></a>与其他模型比较</h3><p>FNN：<br>FNN[Zhang et al., 2016]是FM初始化的前馈神经网络。FM预训练策略导致两个局限：1）嵌入参数可能受到FM的影响; 2）预训练阶段引入的开销减少了效率。此外，FNN仅捕获高阶特征交互。相比之下，DeepFM不需要预训练，可以学习高阶和低阶特征交互。  </p>
 <p>PNN：<br>为了捕获高阶特征交互，PNN在嵌入层和第一个隐藏层之间强加了一个 product layer[Qu et al.，2016]。 根据不同类型的产品操作，有三种变量：IPNN，OPNN和PNN*，其中IPNN基于向量的内积，OPNN基于外积，PNN*基于内积和外积。</p>
 <p>为了使计算更有效，作者提出了内外积的近似计算：1）通过消除一些神经元来近似计算内积; 2）通过将m个k维特征向量压缩为1个k维向量来近似计算外积。然而，我们发现外积不如内积可靠，因为外积的近似计算会丢失大量信息，导致结果不稳定。虽然内积更可靠，但它仍然受到高计算复杂性的影响，因为product 层的输出连接到第一个隐藏层的所有神经元。与PNN不同，DeepFM中product 层的输出仅连接到最终输出层（一个神经元）。与FNN一样，所有PNN都忽略低阶特征交互。</p>
 <p>Wide&amp;Deep:<br>Google提出了Wide&amp;Deep来同时模拟低阶和高阶特征交互。对Wide部分的输入需要专业知识特征工程（例如，在app推荐中用户的安装应用和展示应用的交叉产品）。相比之下，DeepFM不需要这样的专业知识来直接从输入原始特征中学习来处理输入。</p>
 <p>这个模型的直接扩展是用FM替换LR。 此扩展类似于DeepFM，但DeepFM共享FM和深层组件之间的功能嵌入。特征嵌入的共享策略（通过反向传播方式）通过低阶和高阶特征交互影响特征表示，从而更精确地对表示进行建模。</p>
-<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxehp2c4mgj30w509hq7g.jpg" alt=""></h1><h1 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxehs00eypj30ft04sq3c.jpg" alt=""></h1><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>DeepFm是一种基于NN的因子分解机for CTR。DeepFM联合训练Deep部分和FM部分。它的优势如下：  </p>
+<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="读论文《DeepFM》/比较.png" alt=""></h1><h1 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="读论文《DeepFM》/屏幕快照 2018-11-20 下午2.04.16.png" alt=""></h1><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>DeepFm是一种基于NN的因子分解机for CTR。DeepFM联合训练Deep部分和FM部分。它的优势如下：  </p>
 <ol>
 <li>不需要任何预训练  </li>
 <li>它学习了高阶和低阶特征交互  </li>
@@ -779,19 +779,19 @@
 </ol>
 <hr>
 <p>泰勒公式：</p>
-<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9ptfs9ucj30um0n0aed.jpg" alt=""></h1><p>梯度下降法：</p>
-<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xboi1ysj30sp0lcwio.jpg" alt=""></h1><p>牛顿法：</p>
-<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xeiixnhj30sg0l8n0g.jpg" alt=""></h1><h3 id="从参数空间到函数空间"><a href="#从参数空间到函数空间" class="headerlink" title="从参数空间到函数空间"></a>从参数空间到函数空间</h3><p>GBDT在函数空间中利用梯度下降法进行优化<br>Xgboost在函数空间中用牛顿法进行优化  </p>
-<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9xjetx2jj30sn0lgjuw.jpg" alt=""></h1><p>Xgboost的正则项：  </p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9yv4msvjj30s90lk78t.jpg" alt=""></h1><p>上面式子中，第一部分rT，T表示叶子节点的数量，r是超参，也就是说r越大，那么我们的叶子节点数量就会越小。第二部分是L2正则项，通过对叶子结点的权重进行惩罚，使得不会存在权重过大的叶子结点防止过拟合。w就表示叶子结点的权重。  </p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="浅析Xgboost原理/泰勒公式.png" alt=""></h1><p>梯度下降法：</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="浅析Xgboost原理/梯度下降法.png" alt=""></h1><p>牛顿法：</p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="浅析Xgboost原理/牛顿法.png" alt=""></h1><h3 id="从参数空间到函数空间"><a href="#从参数空间到函数空间" class="headerlink" title="从参数空间到函数空间"></a>从参数空间到函数空间</h3><p>GBDT在函数空间中利用梯度下降法进行优化<br>Xgboost在函数空间中用牛顿法进行优化  </p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="浅析Xgboost原理/屏幕快照 2018-11-16 下午3.21.41.png" alt=""></h1><p>Xgboost的正则项：  </p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="浅析Xgboost原理/正则项.png" alt=""></h1><p>上面式子中，第一部分rT，T表示叶子节点的数量，r是超参，也就是说r越大，那么我们的叶子节点数量就会越小。第二部分是L2正则项，通过对叶子结点的权重进行惩罚，使得不会存在权重过大的叶子结点防止过拟合。w就表示叶子结点的权重。  </p>
 <p>但是对于上面这么一个目标函数，我们是很难进行优化的，于是我们将它变换一下，我们通过每一步增加一个基分类器ft，贪婪地去优化这个目标函数，使得每次增加，都使得loss变小。如此一来，我们就得到了一个可以用于评价当前分类器ft性能的一个评价函数：  </p>
-<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxaz43w8h1j30jw04wmxb.jpg" alt=""></h1><p>这个算法又可以称为前向分步优化。为了更快地去优化这个函数，我们可以在ft=0处二阶泰勒展开：  </p>
-<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxaz4r5njoj30pe044aac.jpg" alt=""></h1><p>由于我们的目标函数L只受函数f的影响，上一次的loss对本次迭代并没有影响，于是我们可以删除掉常数项。  </p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="浅析Xgboost原理/1.jpg" alt=""></h1><p>这个算法又可以称为前向分步优化。为了更快地去优化这个函数，我们可以在ft=0处二阶泰勒展开：  </p>
+<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="浅析Xgboost原理/2.jpg" alt=""></h1><p>由于我们的目标函数L只受函数f的影响，上一次的loss对本次迭代并没有影响，于是我们可以删除掉常数项。  </p>
 <p>误差函数的二阶泰勒展开：  </p>
-<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yzlike8j30t10lqad5.jpg" alt=""></h1><h1 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9z08gz61j30sy0lfgo4.jpg" alt=""></h1><p>Xgboost的打分函数：  </p>
-<h1 id="-9"><a href="#-9" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9yxgpquwj30sw0l3n0m.jpg" alt=""></h1><p>树节点分裂算法–精确算法，遍历所有特征的所有可能的分割点，计算gain值，选取值最大的（feature，value）去分割</p>
-<h1 id="-10"><a href="#-10" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx9xqat898j30su0ldgst.jpg" alt=""></h1><p>树节点分裂方法–近似算法，对于每个特征，只考察分位点，减少计算复杂度</p>
-<h1 id="-11"><a href="#-11" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx9xssxkooj30sl0lan4w.jpg" alt=""></h1><p>树节点分裂方法–近似算法举例：三分位数  </p>
+<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="浅析Xgboost原理/（1）.png" alt=""></h1><h1 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="浅析Xgboost原理/（2）.png" alt=""></h1><p>Xgboost的打分函数：  </p>
+<h1 id="-9"><a href="#-9" class="headerlink" title=""></a><img src="浅析Xgboost原理/打分函数.png" alt=""></h1><p>树节点分裂算法–精确算法，遍历所有特征的所有可能的分割点，计算gain值，选取值最大的（feature，value）去分割</p>
+<h1 id="-10"><a href="#-10" class="headerlink" title=""></a><img src="浅析Xgboost原理/精确算法.png" alt=""></h1><p>树节点分裂方法–近似算法，对于每个特征，只考察分位点，减少计算复杂度</p>
+<h1 id="-11"><a href="#-11" class="headerlink" title=""></a><img src="浅析Xgboost原理/近似算法.png" alt=""></h1><p>树节点分裂方法–近似算法举例：三分位数  </p>
 <p>实际上Xgboost不是简单地按照样本个数进行分为，而是以二阶导数值作为权重。</p>
 <h3 id="Xgboost的其他特性"><a href="#Xgboost的其他特性" class="headerlink" title="Xgboost的其他特性"></a>Xgboost的其他特性</h3><ol>
 <li>行抽样（row sample）</li>
@@ -800,7 +800,7 @@
 <li>支持自定义损失函数（需二阶可导）</li>
 </ol>
 <p>Column Block 和 Cache Aware Access：  </p>
-<h1 id="-12"><a href="#-12" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9y1tzmfoj30sr0kv0z5.jpg" alt=""></h1><h3 id="LightGBM的改进"><a href="#LightGBM的改进" class="headerlink" title="LightGBM的改进"></a>LightGBM的改进</h3><ol>
+<h1 id="-12"><a href="#-12" class="headerlink" title=""></a><img src="浅析Xgboost原理/系统设计.png" alt=""></h1><h3 id="LightGBM的改进"><a href="#LightGBM的改进" class="headerlink" title="LightGBM的改进"></a>LightGBM的改进</h3><ol>
 <li><p>直方图算法：<br>把连续的浮点特征值离散化成k个整数，同时构造一个宽度为k的直方图。在遍历数据的时候，根据离散化后的值作为索引在直方图中累积统计量，当遍历一次数据后，直方图累积了需要的统计量，然后根据直方图的离散值，遍历寻找最优的分割点。  </p>
 <p> 这样减少了内存占用；也减少了split finding时计算增益的计算量。</p>
 </li>
@@ -816,7 +816,7 @@
 <p>缺点：网络通信代价巨大  </p>
 <p>LightGBM的数据并行<br>（1）不同的worker合并不同特征的局部直方图<br>（2）采用直方图做差算法，只需要通信一个节点的直方图</p>
 <p>LightGBM其他地方的改进：  </p>
-<h1 id="-13"><a href="#-13" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9ylg5zfxj30sn0j2jwd.jpg" alt=""></h1><h3 id="Xgboost和GBDT的区别"><a href="#Xgboost和GBDT的区别" class="headerlink" title="Xgboost和GBDT的区别"></a>Xgboost和GBDT的区别</h3><ol>
+<h1 id="-13"><a href="#-13" class="headerlink" title=""></a><img src="浅析Xgboost原理/改进.png" alt=""></h1><h3 id="Xgboost和GBDT的区别"><a href="#Xgboost和GBDT的区别" class="headerlink" title="Xgboost和GBDT的区别"></a>Xgboost和GBDT的区别</h3><ol>
 <li><p>传统GBDT以CART作为基分类器，xgboost还支持线性分类器，这个时候xgboost相当于带L1和L2正则化项的逻辑斯蒂回归（分类问题）或者线性回归（回归问题）。</p>
 </li>
 <li><p>传统GBDT在优化时只用到一阶导数信息，xgboost则对代价函数进行了二阶泰勒展开，同时用到了一阶和二阶导数。顺便提一下，xgboost工具支持自定义代价函数，只要函数可一阶和二阶求导。</p>
@@ -970,11 +970,11 @@
 <p>GBDT又叫MART（Multiple Additive Regression Tree），是一种迭代的决策树算法。GBDT几乎可用于所有回归问题（线性/非线性），相对logistic regression仅能用于线性回归，GBDT的适用面非常广。亦可用于二分类问题（设定阈值，大于阈值为正例，反之为负例）。GBDT无论用于分类还是回归一直都是使用的CART回归树。<br>在GBDT的迭代中，假设我们前一轮迭代得到的强学习器是ft−1(x), 损失函数是L(y,ft−1(x)), 我们本轮迭代的目标是找到一个CART回归树模型的弱学习器ht(x)，让本轮的损失函数L(y,ft(x)=L(y,ft−1(x)+ht(x))最小。也就是说，本轮迭代找到决策树，要让样本的损失尽量变得更小。  </p>
 <h3 id="1-Regression-Decision-Tree：回归树"><a href="#1-Regression-Decision-Tree：回归树" class="headerlink" title="1.Regression Decision Tree：回归树"></a>1.Regression Decision Tree：回归树</h3><p>回归树总体流程类似于分类树，区别在于，回归树的每一个节点都会得一个预测值，以年龄为例，该预测值等于属于这个节点的所有人年龄的平均值。分枝时穷举每一个feature的每个阈值找最好的分割点，但衡量最好的标准不再是最大熵，而是最小化平方误差（最小化均方差）。也就是被预测出错的人数越多，错的越离谱，平方误差就越大，通过最小化平方误差能够找到最可靠的分枝依据。分枝直到每个叶子节点上人的年龄都唯一或者达到预设的终止条件(如叶子个数上限)，若最终叶子节点上人的年龄不唯一，则以该节点上所有人的平均年龄做为该叶子节点的预测年龄。  </p>
 <p>回归树算法如下图（截图来自《统计学习方法》5.5.1 CART生成）： </p>
-<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx8x32ajhyj311n0u0tr2.jpg" alt=""></h1><h3 id="2-Boosting-Decision-Tree：提升树算法"><a href="#2-Boosting-Decision-Tree：提升树算法" class="headerlink" title="2.Boosting Decision Tree：提升树算法"></a>2.Boosting Decision Tree：提升树算法</h3><p>提升树是迭代多棵回归树来共同决策。当采用平方误差损失函数时，每一棵回归树学习的是之前所有树的结论和残差，拟合得到一个当前的残差回归树，残差的意义如公式：残差 = 真实值 - 预测值 。提升树即是整个迭代过程生成的回归树的累加。  </p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="GBDT-Gradient-Boosting-Decision-Tree/回归树.png" alt=""></h1><h3 id="2-Boosting-Decision-Tree：提升树算法"><a href="#2-Boosting-Decision-Tree：提升树算法" class="headerlink" title="2.Boosting Decision Tree：提升树算法"></a>2.Boosting Decision Tree：提升树算法</h3><p>提升树是迭代多棵回归树来共同决策。当采用平方误差损失函数时，每一棵回归树学习的是之前所有树的结论和残差，拟合得到一个当前的残差回归树，残差的意义如公式：残差 = 真实值 - 预测值 。提升树即是整个迭代过程生成的回归树的累加。  </p>
 <p>示例如下：</p>
-<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx8x4wjl52j30zo0u0h51.jpg" alt=""></h1><p>提升树算法：  </p>
-<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fx8x63w79lj30bu08b3zc.jpg" alt=""></h1><h3 id="3-GBDT：梯度提升决策树"><a href="#3-GBDT：梯度提升决策树" class="headerlink" title="3.GBDT：梯度提升决策树"></a>3.GBDT：梯度提升决策树</h3><p>利用最速下降的近似方法，即利用损失函数的负梯度在当前模型的值，作为回归问题中提升树算法的残差的近似值，拟合一个回归树。<br>算法如下：  </p>
-<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx8x7m8fguj30i90eimyz.jpg" alt=""></h1><p>I(x∈Rjm)其实就是一个很简单的函数，如果x∈Rtj，那么I(x∈Rjm)=1，否则等于0。</p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="GBDT-Gradient-Boosting-Decision-Tree/提升树算法.png" alt=""></h1><p>提升树算法：  </p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="GBDT-Gradient-Boosting-Decision-Tree/提升树.png" alt=""></h1><h3 id="3-GBDT：梯度提升决策树"><a href="#3-GBDT：梯度提升决策树" class="headerlink" title="3.GBDT：梯度提升决策树"></a>3.GBDT：梯度提升决策树</h3><p>利用最速下降的近似方法，即利用损失函数的负梯度在当前模型的值，作为回归问题中提升树算法的残差的近似值，拟合一个回归树。<br>算法如下：  </p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="GBDT-Gradient-Boosting-Decision-Tree/GBDT.png" alt=""></h1><p>I(x∈Rjm)其实就是一个很简单的函数，如果x∈Rtj，那么I(x∈Rjm)=1，否则等于0。</p>
 <p>算法步骤解释：  </p>
 <ol>
 <li>初始化弱学习器f0，估计使损失函数极小化的常数值，它是只有一个根节点的树，即ganma是一个常数值。  </li>
@@ -984,8 +984,8 @@
 <p>注：ganma是GBDT中每颗决策树拟合叶子节点最好的输出值，在回归GBDT初始化的时候，ganma一般取值为所有y的平均值。  </p>
 <p>当我们迭代到第t个弱分类器的时候，我们把损失函数进行一阶泰勒展开，出现的f_t-1（x）+ △x 的形式，这个△x 就是我们这一轮弱分类器想要输出的值，一阶泰勒展开后面有一项是导数和△x的乘积。我们当然想让这一轮的损失函数小于上一轮的，那我们就让△x等于负导数 ，这样一个值的平方加上负号，一定是一个负值，这样就能保证这一轮的损失函数小于上一轮的。</p>
 <p>GBDT回归算法：</p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fx9299dbwyj30hu0gtwgd.jpg" alt=""></h1><p>GBDT二分类算法：</p>
-<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fx92ahgwioj30ft0a8wft.jpg" alt=""></h1><h3 id="4-重要参数的意义和设置"><a href="#4-重要参数的意义和设置" class="headerlink" title="4.重要参数的意义和设置"></a>4.重要参数的意义和设置</h3><p>推荐GBDT树的深度：6（横向比较：DecisionTree/RandomForest需要把树的深度调到15或更高）<br>以下摘自知乎上的一个问答（详见参考文献8），问题和回复都很好的阐述了这个参数设置的数学原理。<br>【问】xgboost/gbdt在调参时为什么树的深度很少就能达到很高的精度？  </p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="GBDT-Gradient-Boosting-Decision-Tree/屏幕快照 2018-11-15 下午9.19.34.png" alt=""></h1><p>GBDT二分类算法：</p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="GBDT-Gradient-Boosting-Decision-Tree/屏幕快照 2018-11-15 下午9.20.31.png" alt=""></h1><h3 id="4-重要参数的意义和设置"><a href="#4-重要参数的意义和设置" class="headerlink" title="4.重要参数的意义和设置"></a>4.重要参数的意义和设置</h3><p>推荐GBDT树的深度：6（横向比较：DecisionTree/RandomForest需要把树的深度调到15或更高）<br>以下摘自知乎上的一个问答（详见参考文献8），问题和回复都很好的阐述了这个参数设置的数学原理。<br>【问】xgboost/gbdt在调参时为什么树的深度很少就能达到很高的精度？  </p>
 <p>用xgboost/gbdt在在调参的时候把树的最大深度调成6就有很高的精度了。但是用DecisionTree/RandomForest的时候需要把树的深度调到15或更高。用RandomForest所需要的树的深度和DecisionTree一样我能理解，因为它是用bagging的方法把DecisionTree组合在一起，相当于做了多次DecisionTree一样。但是xgboost/gbdt仅仅用梯度上升法就能用6个节点的深度达到很高的预测精度，使我惊讶到怀疑它是黑科技了。请问下xgboost/gbdt是怎么做到的？它的节点和一般的DecisionTree不同吗？  </p>
 <p>【答】<br>  这是一个非常好的问题，题主对各算法的学习非常细致透彻，问的问题也关系到这两个算法的本质。这个问题其实并不是一个很简单的问题，我尝试用我浅薄的机器学习知识对这个问题进行回答。  </p>
 <p>一句话的解释，来自周志华老师的机器学习教科书（机器学习-周志华）：Boosting主要关注降低偏差，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成；Bagging主要关注降低方差，因此它在不剪枝的决策树、神经网络等学习器上效用更为明显。</p>
@@ -995,7 +995,7 @@
 <p>如下图所示，当模型越复杂时，拟合的程度就越高，模型的训练偏差就越小。但此时如果换一组数据可能模型的变化就会很大，即模型的方差很大。所以模型过于复杂的时候会导致过拟合。  </p>
 <p>当模型越简单时，即使我们再换一组数据，最后得出的学习器和之前的学习器的差别就不那么大，模型的方差很小。还是因为模型简单，所以偏差会很大。  </p>
 <p>模型复杂度与偏差方差的关系图：  </p>
-<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fx8xddvtfxj30cn07tgmc.jpg" alt=""></h1><p>也就是说，当我们训练一个模型时，偏差和方差都得照顾到，漏掉一个都不行。  </p>
+<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="GBDT-Gradient-Boosting-Decision-Tree/6D27F5B9-8202-473B-A692-C0D6AEB309D8.png" alt=""></h1><p>也就是说，当我们训练一个模型时，偏差和方差都得照顾到，漏掉一个都不行。  </p>
 <p>对于Bagging算法来说，由于我们会并行地训练很多不同的分类器的目的就是降低这个方差(variance) ,因为采用了相互独立的基分类器多了以后，h的值自然就会靠近.所以对于每个基分类器来说，目标就是如何降低这个偏差（bias),所以我们会采用深度很深甚至不剪枝的决策树。  </p>
 <p>对于Boosting来说，每一步我们都会在上一轮的基础上更加拟合原数据，所以可以保证偏差（bias）,所以对于每个基分类器来说，问题就在于如何选择variance更小的分类器，即更简单的分类器，所以我们选择了深度很浅的决策树。</p>
 <h3 id="5-Shrinkage"><a href="#5-Shrinkage" class="headerlink" title="5.Shrinkage"></a>5.Shrinkage</h3><p>Shrinkage（缩减）的思想认为，每次走一小步逐渐逼近结果的效果，要比每次迈一大步很快逼近结果的方式更容易避免过拟合。即它不完全信任每一个棵残差树，它认为每棵树只学到了真理的一小部分，累加的时候只累加一小部分，通过多学几棵树弥补不足。  </p>
@@ -1608,17 +1608,17 @@
 </li>
 </ul>
 <h3 id="PLOY2和FM"><a href="#PLOY2和FM" class="headerlink" title="PLOY2和FM"></a>PLOY2和FM</h3><p>2次多项式映射通常可以有效地捕获特征交互的信息。此外，他们表明，通过在2维映射的显式形式上应用线性模型，训练和测试时间可以比使用核方法快得多。这种方法称为Poly2，可以学习每个特征对的权重： </p>
-<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fyccqhjk48j30e202o3yl.jpg" alt=""></h1><p>其中h（j 1，j 2）是将j 1和j 2编码为自然数的函数。计算的复杂度是O（n_mean^2），其中，n_mean是每个实例的非零元素的平均数。  </p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="读论文-FFM/屏幕快照 2018-12-11 下午3.01.19.png" alt=""></h1><p>其中h（j 1，j 2）是将j 1和j 2编码为自然数的函数。计算的复杂度是O（n_mean^2），其中，n_mean是每个实例的非零元素的平均数。  </p>
 <p>之前提出的FM隐含地为每个特征学习隐向量。每个隐在向量包含k个隐因子，其中k是用户指定的参数。然后，特征交互的效果由两个隐向量的内积建模：</p>
-<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fyccr4ugzxj30ec02qglo.jpg" alt=""></h1><p>变量的数量是n×k，因此直接计算花费O（n_mean^2 k）时间。化简后为O（n_mean k）。<br>当数据集稀疏时FM可能比Poly2更好。请注意，在Poly2中，实现h（j 1，j 2）的简单方法是将每对特征视为一个新特征。这种方法需要与O（n^2）一样大的模型，由于n非常大，这对于CTR预测通常是不切实际的。<br>在本文中，为了简化公式，我们不包括线性项和偏差项。  </p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="读论文-FFM/屏幕快照 2018-12-11 下午3.04.29.png" alt=""></h1><p>变量的数量是n×k，因此直接计算花费O（n_mean^2 k）时间。化简后为O（n_mean k）。<br>当数据集稀疏时FM可能比Poly2更好。请注意，在Poly2中，实现h（j 1，j 2）的简单方法是将每对特征视为一个新特征。这种方法需要与O（n^2）一样大的模型，由于n非常大，这对于CTR预测通常是不切实际的。<br>在本文中，为了简化公式，我们不包括线性项和偏差项。  </p>
 <h3 id="FFM"><a href="#FFM" class="headerlink" title="FFM"></a>FFM</h3><p>FFM的想法源于PITF，该推荐用于具有个性化标签的推荐系统。在PITF中，他们假设三个可用的字段，包括用户，项目和标签，并在单独的潜在空间中分解（用户，项目），（用户，标签）和（项目，标签）。FFM是使用此信息的FM的变体。为了解释FFM如何工作，我们考虑以下新示例：  </p>
-<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fyccs6z2vgj30iw02idg0.jpg" alt=""></h1><p>回想一下FM，φFM（w，x）是</p>
-<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fyccsimdy2j30fk00ygll.jpg" alt=""></h1><p>在FM中，每个特征只有一个隐向量来学习具有任何其他特征的潜在影响。 以ESPN为例，ESPN用于学习Nike（w ESPN·w Nike）和Male（w ESPN·w Male）的潜在影响。 然而，由于Nike和Male属于不同的领域，（EPSN，Nike）和（EPSN，Male）的潜在影响可能不同。<br>在FFM中，每个特征都有几个隐向量。根据其他功能的领域，其中一个用于内积。 在我们的例子中，φFFM（w，x）是  </p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="读论文-FFM/屏幕快照 2018-12-11 下午3.13.35.png" alt=""></h1><p>回想一下FM，φFM（w，x）是</p>
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="读论文-FFM/屏幕快照 2018-12-11 下午3.13.45.png" alt=""></h1><p>在FM中，每个特征只有一个隐向量来学习具有任何其他特征的潜在影响。 以ESPN为例，ESPN用于学习Nike（w ESPN·w Nike）和Male（w ESPN·w Male）的潜在影响。 然而，由于Nike和Male属于不同的领域，（EPSN，Nike）和（EPSN，Male）的潜在影响可能不同。<br>在FFM中，每个特征都有几个隐向量。根据其他功能的领域，其中一个用于内积。 在我们的例子中，φFFM（w，x）是  </p>
 <p>w ESPN,A · w Nike,P + w ESPN,G · w Male,P + w Nike,G · w Male,A  </p>
 <p>我们看到要学习（ESPN，NIKE），ESPN，A的潜在效果，因为Nike属于现场广告，因为ESPN属于现场发行人，所以使用了Nike，P. 再次，为了学习（EPSN，男性），ESPN的潜在影响，使用G是因为男性属于性别性别，并且因为ESPN属于现场出版商而使用了男性，P。在数学上，FFM：</p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fycctcry83j30g80323ym.jpg" alt=""></h1><p>其中f 1和f 2分别是j 1和j 2的字段。 如果f是字段数，那么FFM的变量数是nfk，而计算（4）的复杂度是O（n_mean^2 k）。 值得注意的是，在FFM中，因为每个潜在的向量只需要通过一个特定的领域来学习效果，通常     k_FFM &lt;&lt; k_FM .</p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="读论文-FFM/屏幕快照 2018-12-11 下午3.18.18.png" alt=""></h1><p>其中f 1和f 2分别是j 1和j 2的字段。 如果f是字段数，那么FFM的变量数是nfk，而计算（4）的复杂度是O（n_mean^2 k）。 值得注意的是，在FFM中，因为每个潜在的向量只需要通过一个特定的领域来学习效果，通常     k_FFM &lt;&lt; k_FM .</p>
 <h3 id="解决优化问题"><a href="#解决优化问题" class="headerlink" title="解决优化问题"></a>解决优化问题</h3><p>除了用φFFM（w，x）代替φLM（w，x）之外，优化问题与（1）相同。最近，已经提出了一些自适应学习速率调度表，以促进SGD的训练过程。 我们使用AdaGrad ，因为已经证明了它对矩阵因子化的有效性，这是FFM的一个特例。训练过程如下所示：</p>
-<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fyccuxy5pyj30ja0bkmyy.jpg" alt=""></h1><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在本文中，讨论了FFM的有效实现。我们证明，对于某些类型的数据集，FFM在logloss方面优于三个着名的LM，Poly2和FM模型，但训练时间较长。</p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="读论文-FFM/屏幕快照 2018-12-11 下午6.14.46.png" alt=""></h1><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在本文中，讨论了FFM的有效实现。我们证明，对于某些类型的数据集，FFM在logloss方面优于三个着名的LM，Poly2和FM模型，但训练时间较长。</p>
 <h2 id="个人体会"><a href="#个人体会" class="headerlink" title="个人体会"></a>个人体会</h2><p>在FM模型中，每一个特征会对应一个隐变量，但在FFM模型中，认为应该将特征分为多个field，每个特征对应每个field分别有一个隐变量。举个例子，我们的样本有3种类型的字段：publisher, advertiser, gender，分别可以代表媒体，广告主或者是具体的商品，性别。其中publisher有5种数据，advertiser有10种数据，gender有男女2种，经过one-hot编码以后，每个样本有17个特征，其中只有3个特征非空。如果使用FM模型，则17个特征，每个特征对应一个隐变量。如果使用FFM模型，则17个特征，每个特征对应3个隐变量，即每个类型对应一个隐变量，具体而言，就是对应publisher, advertiser, gender三个field各有一个隐变量。  </p>
 <p>在FFM的训练过程中，有许多细节要注意。  </p>
 <p>第一，样本归一化。FFM默认是进行样本数据的归一化，否则很容易造成数据inf溢出，进而引起梯度计算的nan错误。因此，样本层面的数据是推荐进行归一化的。 </p>

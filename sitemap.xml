@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/GBDT-Gradient-Boosting-Decision-Tree/</loc>
+    
+    <lastmod>2019-06-09T06:07:18.099Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/%E6%B5%85%E6%9E%90Xgboost%E5%8E%9F%E7%90%86/</loc>
+    
+    <lastmod>2019-06-09T06:04:28.529Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87%E3%80%8ADeepFM%E3%80%8B/</loc>
+    
+    <lastmod>2019-06-09T05:57:27.836Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87-FFM/</loc>
+    
+    <lastmod>2019-06-09T05:54:08.765Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87-%E3%80%8AWide-Deep%E3%80%8B/</loc>
     
     <lastmod>2019-06-09T05:46:46.380Z</lastmod>
@@ -26,34 +54,6 @@
     <loc>http://yoursite.com/%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</loc>
     
     <lastmod>2019-02-28T06:49:26.716Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87-FFM/</loc>
-    
-    <lastmod>2018-12-19T13:04:23.300Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87%E3%80%8ADeepFM%E3%80%8B/</loc>
-    
-    <lastmod>2018-11-21T11:51:32.594Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/%E6%B5%85%E6%9E%90Xgboost%E5%8E%9F%E7%90%86/</loc>
-    
-    <lastmod>2018-11-17T05:04:14.319Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/GBDT-Gradient-Boosting-Decision-Tree/</loc>
-    
-    <lastmod>2018-11-15T14:13:25.730Z</lastmod>
     
   </url>
   

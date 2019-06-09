@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/%E5%B8%B8%E8%A7%81%E7%9A%84SVD/</loc>
+    
+    <lastmod>2019-06-09T06:22:53.738Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87-Factorization-Machines/</loc>
+    
+    <lastmod>2019-06-09T06:19:44.689Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/GBDT-Gradient-Boosting-Decision-Tree/</loc>
     
     <lastmod>2019-06-09T06:07:18.099Z</lastmod>
@@ -72,23 +86,9 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87-Factorization-Machines/</loc>
-    
-    <lastmod>2018-11-03T15:12:21.209Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87-Deep-Learning-based-Recommender-System-A-Survey-and-New/</loc>
     
     <lastmod>2018-09-24T11:17:03.979Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/%E5%B8%B8%E8%A7%81%E7%9A%84SVD/</loc>
-    
-    <lastmod>2018-06-16T07:23:14.875Z</lastmod>
     
   </url>
   

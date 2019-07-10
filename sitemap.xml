@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2019-07-10T14:01:26.482Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/Graph-Embedding/</loc>
     
     <lastmod>2019-07-10T13:56:21.610Z</lastmod>

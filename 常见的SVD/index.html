@@ -90,15 +90,15 @@
 <meta property="og:site_name" content="WittonZhou">
 <meta property="og:description" content="1.Traditional SVD：如果想运用SVD分解的话，有一个前提是要求矩阵是稠密的，即矩阵里的元素要非空，否则就不能运用SVD分解。很显然我们的任务还不能用SVD，所以一般的做法是先用均值或者其他统计学方法来填充矩阵，然后再运用SVD分解降维。 2.FunkSVD：不再将矩阵分解为3个矩阵，而是分解为2个低秩的用户项目矩阵。公式：  带有L2正则项的FunkSVD，公式为： 3.BiasS">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/常见的SVD/常见的SVD/006tKfTcly1fsd1l25eggj304601emwy.jpg">
-<meta property="og:image" content="http://yoursite.com/常见的SVD/常见的SVD/006tKfTcly1fsd1nbcmjij30bb01xjrd.jpg">
-<meta property="og:image" content="http://yoursite.com/常见的SVD/常见的SVD/006tKfTcly1fsd1r1it7kj30eg01hglj.jpg">
-<meta property="og:image" content="http://yoursite.com/常见的SVD/常见的SVD/006tKfTcly1fsd1qnhm8hj30cl02rmx7.jpg">
-<meta property="og:updated_time" content="2019-06-09T06:22:53.738Z">
+<meta property="og:image" content="http://pudjsgimg.bkt.clouddn.com/2019-07-10-006tKfTcly1fsd1l25eggj304601emwy.jpg">
+<meta property="og:image" content="http://pudjsgimg.bkt.clouddn.com/2019-07-10-006tKfTcly1fsd1nbcmjij30bb01xjrd.jpg">
+<meta property="og:image" content="http://pudjsgimg.bkt.clouddn.com/2019-07-10-006tKfTcly1fsd1r1it7kj30eg01hglj.jpg">
+<meta property="og:image" content="http://pudjsgimg.bkt.clouddn.com/2019-07-10-006tKfTcly1fsd1qnhm8hj30cl02rmx7.jpg">
+<meta property="og:updated_time" content="2019-07-10T13:10:35.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见的SVD">
 <meta name="twitter:description" content="1.Traditional SVD：如果想运用SVD分解的话，有一个前提是要求矩阵是稠密的，即矩阵里的元素要非空，否则就不能运用SVD分解。很显然我们的任务还不能用SVD，所以一般的做法是先用均值或者其他统计学方法来填充矩阵，然后再运用SVD分解降维。 2.FunkSVD：不再将矩阵分解为3个矩阵，而是分解为2个低秩的用户项目矩阵。公式：  带有L2正则项的FunkSVD，公式为： 3.BiasS">
-<meta name="twitter:image" content="http://yoursite.com/常见的SVD/常见的SVD/006tKfTcly1fsd1l25eggj304601emwy.jpg">
+<meta name="twitter:image" content="http://pudjsgimg.bkt.clouddn.com/2019-07-10-006tKfTcly1fsd1l25eggj304601emwy.jpg">
 
 
 
@@ -310,12 +310,12 @@
       
         <h2 id="1-Traditional-SVD："><a href="#1-Traditional-SVD：" class="headerlink" title="1.Traditional SVD："></a>1.Traditional SVD：</h2><p>如果想运用SVD分解的话，有一个前提是要求矩阵是稠密的，即矩阵里的元素要非空，否则就不能运用SVD分解。很显然我们的任务还不能用SVD，所以一般的做法是先用均值或者其他统计学方法来填充矩阵，然后再运用SVD分解降维。</p>
 <h2 id="2-FunkSVD："><a href="#2-FunkSVD：" class="headerlink" title="2.FunkSVD："></a>2.FunkSVD：</h2><p>不再将矩阵分解为3个矩阵，而是分解为2个低秩的用户项目矩阵。<br>公式：</p>
-<p><img src="常见的SVD/006tKfTcly1fsd1l25eggj304601emwy.jpg" alt=""></p>
-<p>带有L2正则项的FunkSVD，公式为：<br><img src="常见的SVD/006tKfTcly1fsd1nbcmjij30bb01xjrd.jpg" alt=""></p>
+<p><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-006tKfTcly1fsd1l25eggj304601emwy.jpg" alt=""></p>
+<p>带有L2正则项的FunkSVD，公式为：<br><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-006tKfTcly1fsd1nbcmjij30bb01xjrd.jpg" alt=""></p>
 <h2 id="3-BiasSVD："><a href="#3-BiasSVD：" class="headerlink" title="3.BiasSVD："></a>3.BiasSVD：</h2><p>在FunkSVD提出来之后，出现了很多变形版本，其中一个相对成功的方法是BiasSVD，顾名思义，即带有偏置项的SVD分解，公式：</p>
-<p><img src="常见的SVD/006tKfTcly1fsd1r1it7kj30eg01hglj.jpg" alt=""></p>
+<p><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-006tKfTcly1fsd1r1it7kj30eg01hglj.jpg" alt=""></p>
 <h2 id="4-SVD-："><a href="#4-SVD-：" class="headerlink" title="4.SVD++："></a>4.SVD++：</h2><p>人们后来又提出了改进的BiasSVD，还是顾名思义，两个加号，我想是一个加了用户项目偏置项，另一个是在它的基础上添加了用户的隐式反馈信息。公式：</p>
-<p><img src="常见的SVD/006tKfTcly1fsd1qnhm8hj30cl02rmx7.jpg" alt=""></p>
+<p><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-006tKfTcly1fsd1qnhm8hj30cl02rmx7.jpg" alt=""></p>
 
       
     </div>

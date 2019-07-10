@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87%E3%80%8ADeepFM%E3%80%8B/</loc>
+    
+    <lastmod>2019-07-10T13:33:03.167Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/GBDT-Gradient-Boosting-Decision-Tree/</loc>
     
     <lastmod>2019-07-10T13:25:46.194Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/%E6%B5%85%E6%9E%90Xgboost%E5%8E%9F%E7%90%86/</loc>
     
     <lastmod>2019-07-10T13:24:05.866Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/%E8%AF%BB%E8%AE%BA%E6%96%87%E3%80%8ADeepFM%E3%80%8B/</loc>
-    
-    <lastmod>2019-07-10T13:21:31.973Z</lastmod>
     
   </url>
   

@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-20%20%E4%B8%8B%E5%8D%882.51.11.png">
 <meta property="og:image" content="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E6%AF%94%E8%BE%83.png">
 <meta property="og:image" content="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-20%20%E4%B8%8B%E5%8D%882.04.16.png">
-<meta property="og:updated_time" content="2019-07-10T13:21:31.973Z">
+<meta property="og:updated_time" content="2019-07-10T13:33:03.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="读论文《DeepFM》">
 <meta name="twitter:description" content="DeepFMDeepFM: A Factorization-Machine based Neural Network for CTR Prediction, 2017文章所提出的模型DeepFM结合了因子分解机和深度学习的功能，分解机的功能用于推荐，深度学习的功能用于新的神经网络架构中的特征学习。与Google最新的Wide＆Deep模型相比，DeepFM对其“宽”和“深”部分有共享输入，除了原始">
@@ -113,7 +113,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -320,6 +320,7 @@
 <p>虽然原则上FM可以模拟高阶特征交互，但实际上通常由于高复杂性而仅考虑2阶特征交互。</p>
 <p>现有模型偏向于低阶或高阶特征交互，或依赖于特征工程。在文章中，展示了可以推导出一种学习模型，该模型能够以端到端的方式学习所有的特征交互，除了原始特征之外没有任何特征工程。  </p>
 <p>DeepFM模拟了FM的低阶特征交互，还模拟了DNN的高阶特征交互。与Wide&amp;Deep不同，DeepFM没有进行任何特征工程。  </p>
+<a id="more"></a>
 <h3 id="DeepFM-1"><a href="#DeepFM-1" class="headerlink" title="DeepFM"></a>DeepFM</h3><h1 id=""><a href="#" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E7%BB%93%E6%9E%84.png" alt=""></h1><p>整个模型的输出：</p>
 <h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-20%20%E4%B8%8B%E5%8D%882.11.03.png" alt=""></h1><p>可知，是由FM部分的输出加上DNN部分的输出，然后再外套一个sigmoid函数。</p>
 <p>FM部分</p>
@@ -439,116 +440,6 @@
 
 
         </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Witton Zhou</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/wittonzhou" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:wittonzhou@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepFM"><span class="nav-number">1.</span> <span class="nav-text">DeepFM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-2017"><span class="nav-number">1.1.</span> <span class="nav-text">DeepFM: A Factorization-Machine based Neural Network for CTR Prediction, 2017</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DeepFM-1"><span class="nav-number">1.2.</span> <span class="nav-text">DeepFM</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-3"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-4"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-5"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-6"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与其他模型比较"><span class="nav-number">0.1.</span> <span class="nav-text">与其他模型比较</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-7"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-8"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">0.1.</span> <span class="nav-text">结论</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
         
       </div>
     </main>

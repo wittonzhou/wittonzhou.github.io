@@ -99,7 +99,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"remove","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -618,41 +618,20 @@
 
       
         
-          
-            <h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h2><h3 id="DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-2017"><a href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-2017" class="headerlink" title="DeepFM: A Factorization-Machine based Neural Network for CTR Prediction, 2017"></a>DeepFM: A Factorization-Machine based Neural Network for CTR Prediction, 2017</h3><p>文章所提出的模型DeepFM结合了因子分解机和深度学习的功能，分解机的功能用于推荐，深度学习的功能用于新的神经网络架构中的特征学习。与Google最新的Wide＆Deep模型相比，DeepFM对其“宽”和“深”部分有共享输入，除了原始功能之外不需要特征工程。  </p>
+          <h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h2><h3 id="DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-2017"><a href="#DeepFM-A-Factorization-Machine-based-Neural-Network-for-CTR-Prediction-2017" class="headerlink" title="DeepFM: A Factorization-Machine based Neural Network for CTR Prediction, 2017"></a>DeepFM: A Factorization-Machine based Neural Network for CTR Prediction, 2017</h3><p>文章所提出的模型DeepFM结合了因子分解机和深度学习的功能，分解机的功能用于推荐，深度学习的功能用于新的神经网络架构中的特征学习。与Google最新的Wide＆Deep模型相比，DeepFM对其“宽”和“深”部分有共享输入，除了原始功能之外不需要特征工程。  </p>
 <p>点击率（CTR）的预测在推荐系统中至关重要，其中任务是估计用户点击推荐项目的概率。 在许多推荐系统中，目标是最大化点击次数，因此返回给用户的项目可以按估计的CTR排序; 而在其他应用场景中，例如在线广告，提高收入也很重要，因此排名策略可以调整为所有候选人的CTR×出价，其中“出价”是系统在用户点击项目时收到的好处。在任何一种情况下，很明显关键在于正确估算点击率。  </p>
 <p>CTR预测学习用户点击行为背后的隐式功能交互非常重要。通过我们在主流应用程序市场的研究，我们发现人们经常在用餐时下载用于提供食物的应用程序，这表明应用程序类别和时间戳之间的交互可以用作CTR的信号。再比如，男性青少年喜欢射击游戏和RPG游戏，这意味着应用类别，用户性别和年龄的交互是CTR的另一个信号。通常，用户点击行为背后的特征的这种交互可以是高度复杂的，其中低阶和高阶特征交互都应该发挥重要作用。根据Wide&amp;Deep提出的观点可知，同时考虑低阶和高阶特征相互作用比在单独考虑其中的情况下带来额外的改进。</p>
 <p>关键的挑战是有效地建模特征交互。即使对于易于理解的交互，专家似乎也不可能对其进行前所未有的建模，尤其是当特征数量很大时。  </p>
 <p>虽然原则上FM可以模拟高阶特征交互，但实际上通常由于高复杂性而仅考虑2阶特征交互。</p>
 <p>现有模型偏向于低阶或高阶特征交互，或依赖于特征工程。在文章中，展示了可以推导出一种学习模型，该模型能够以端到端的方式学习所有的特征交互，除了原始特征之外没有任何特征工程。  </p>
 <p>DeepFM模拟了FM的低阶特征交互，还模拟了DNN的高阶特征交互。与Wide&amp;Deep不同，DeepFM没有进行任何特征工程。  </p>
-<h3 id="DeepFM-1"><a href="#DeepFM-1" class="headerlink" title="DeepFM"></a>DeepFM</h3><h1 id=""><a href="#" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E7%BB%93%E6%9E%84.png" alt=""></h1><p>整个模型的输出：</p>
-<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-20%20%E4%B8%8B%E5%8D%882.11.03.png" alt=""></h1><p>可知，是由FM部分的输出加上DNN部分的输出，然后再外套一个sigmoid函数。</p>
-<p>FM部分</p>
-<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-FM%E9%83%A8%E5%88%86.png" alt=""></h1><p>处理特征之间的线性相互作用之外，FM模型成对（2阶）相互作用作为各个特征潜在向量的内积。在先前的方法中，仅当特征i和特征j都出现在同一数据记录中时，才能训练特征i和j的交互的参数。在FM中，它是通过它们的潜在向量Vi和Vj的内积来测量的。 由于这种灵活的设计，只要i（或j）出现在数据记录中，FM就可以训练潜在向量Vi（Vj）。  </p>
-<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-20%20%E4%B8%8B%E5%8D%882.46.00.png" alt=""></h1><p>上式中，左边部分反映了1阶特征的重要性，右边部分反映了2阶特征交互的重要性。</p>
-<p>Deep部分</p>
-<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-dnn%E9%83%A8%E5%88%86.png" alt=""></h1><p>Deep部分与其他神经网络相比，不同于图像和音频的密集的数据输入，CTR预测的输入是完全不同的，所以需要新的网络结构设计。具体而言，CTR预测的原始特征输入向量通常是高度稀疏的、超高维度的、类别值和连续值混合的、并且在field中分好组的。这表明嵌入层应该在进一步馈入第一个隐藏层之前将输入向量压缩为低维稠密向量。这里的输入向量是类别型特征经过独热编码的（如果是数值型特征则先离散化）。</p>
-<p>输入层到嵌入层的结构：</p>
-<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-embedding.png" alt=""></h1><p>这种结构有两个好处：  </p>
-<p>（1）虽然input field vectors 可以是不同长度的，但是它们的嵌入是相同size 的,size = k<br>（2）FM中的隐向量V现在作为神经网络的权重，被用于将input field vectors压缩到embedding vectors  </p>
-<p>embedding层的输出是m个field对应的e向量，传入DNN，最后得到一个稠密实值向量，经过一个sigmoid函数得到预测的CTR。</p>
-<p>这样，我们不再需要通过FM进行预训练，而是以端到端的方式联合训练整个网络。嵌入层的输出表示为：</p>
-<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-20%20%E4%B8%8B%E5%8D%882.51.11.png" alt=""></h1><p>FM部分和Deep部分共享相同的特征嵌入，这带来了两点好处：<br>（1）它能从原始特征中学习到低阶和高阶的特征交互<br>（2）它不需要专业的特征工程，而在Wide&amp;Deep中是需要的  </p>
-<h3 id="与其他模型比较"><a href="#与其他模型比较" class="headerlink" title="与其他模型比较"></a>与其他模型比较</h3><p>FNN：<br>FNN[Zhang et al., 2016]是FM初始化的前馈神经网络。FM预训练策略导致两个局限：1）嵌入参数可能受到FM的影响; 2）预训练阶段引入的开销减少了效率。此外，FNN仅捕获高阶特征交互。相比之下，DeepFM不需要预训练，可以学习高阶和低阶特征交互。  </p>
-<p>PNN：<br>为了捕获高阶特征交互，PNN在嵌入层和第一个隐藏层之间强加了一个 product layer[Qu et al.，2016]。 根据不同类型的产品操作，有三种变量：IPNN，OPNN和PNN*，其中IPNN基于向量的内积，OPNN基于外积，PNN*基于内积和外积。</p>
-<p>为了使计算更有效，作者提出了内外积的近似计算：1）通过消除一些神经元来近似计算内积; 2）通过将m个k维特征向量压缩为1个k维向量来近似计算外积。然而，我们发现外积不如内积可靠，因为外积的近似计算会丢失大量信息，导致结果不稳定。虽然内积更可靠，但它仍然受到高计算复杂性的影响，因为product 层的输出连接到第一个隐藏层的所有神经元。与PNN不同，DeepFM中product 层的输出仅连接到最终输出层（一个神经元）。与FNN一样，所有PNN都忽略低阶特征交互。</p>
-<p>Wide&amp;Deep:<br>Google提出了Wide&amp;Deep来同时模拟低阶和高阶特征交互。对Wide部分的输入需要专业知识特征工程（例如，在app推荐中用户的安装应用和展示应用的交叉产品）。相比之下，DeepFM不需要这样的专业知识来直接从输入原始特征中学习来处理输入。</p>
-<p>这个模型的直接扩展是用FM替换LR。 此扩展类似于DeepFM，但DeepFM共享FM和深层组件之间的功能嵌入。特征嵌入的共享策略（通过反向传播方式）通过低阶和高阶特征交互影响特征表示，从而更精确地对表示进行建模。</p>
-<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E6%AF%94%E8%BE%83.png" alt=""></h1><h1 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="http://pudjsgimg.bkt.clouddn.com/2019-07-10-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-20%20%E4%B8%8B%E5%8D%882.04.16.png" alt=""></h1><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>DeepFm是一种基于NN的因子分解机for CTR。DeepFM联合训练Deep部分和FM部分。它的优势如下：  </p>
-<ol>
-<li>不需要任何预训练  </li>
-<li>它学习了高阶和低阶特征交互  </li>
-<li>引入了特征嵌入的共享策略，以避免特征工程  </li>
-<li>在实验数据集中，DeepFM的效果和效率都好于目前最先进的模型  </li>
-</ol>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/读论文《DeepFM》/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1805,91 +1784,6 @@
           
 
         </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Witton Zhou</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/wittonzhou" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:wittonzhou@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
         
       </div>
     </main>
